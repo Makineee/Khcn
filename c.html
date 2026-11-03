@@ -1,0 +1,39 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Robot Controller</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}body{margin:0;background:#070b17;color:#e6f0ff;font-family:Orbitron,system-ui,sans-serif;min-height:100vh;padding:12px;-webkit-user-select:none;user-select:none}
+.c{text-align:center}.big{font-size:26px;font-weight:800;margin:10px 0}.m{color:#8aa0c8;font-size:13px}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+button{font-family:inherit;color:#e6f0ff;background:#0f1830;border:2px solid #243558;border-radius:14px;padding:14px 8px;font-size:15px;display:flex;flex-direction:column;align-items:center;gap:4px;width:100%}
+button:active:not(:disabled){transform:scale(.96)}button:disabled{opacity:.35}
+button span{font-size:34px}button small{font-size:10px;color:#8aa0c8}
+.sp{grid-column:span 2;border-color:#ffe14d}
+.o{align-items:flex-start;text-align:left;font-size:16px;margin-bottom:10px}
+.bar{height:8px;background:#0a1226;border-radius:6px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;width:100%;background:#3dff9a;transition:width 1s linear}
+</style></head><body><div id="v"></div>
+<script>
+const v=document.getElementById('v'),T=+new URLSearchParams(location.search).get('t'),has=new URLSearchParams(location.search).has('t');
+let col='#22e6ff',name='Team '+(T+1),iv,ws;
+const vib=()=>navigator.vibrate&&navigator.vibrate(40);
+const tx=msg=>ws&&ws.readyState===1&&ws.send(JSON.stringify({type:'c',msg}));
+if(!has||(T!==0&&T!==1)){v.innerHTML='<div class="c"><div class="big">Choose your team</div><div class="g"><button onclick="location.search=\'?t=0\'">Team 1</button><button onclick="location.search=\'?t=1\'">Team 2</button></div></div>';}
+else{col=T?'#ff8a3d':'#22e6ff';show('<div class="big">Connecting…</div>');conn();}
+function show(h){clearInterval(iv);v.innerHTML=`<div class="c" style="color:${col}">${h}</div>`;}
+function conn(){ws=new WebSocket((location.protocol==='https:'?'wss://':'ws://')+location.host);
+ws.onopen=()=>ws.send(JSON.stringify({type:'join',team:T}));
+ws.onclose=()=>{show('<div class="big">Reconnecting…</div>');setTimeout(conn,1500)};
+ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.type==='s')ui(m.msg);};}
+function ui(m){col=m.col||col;name=m.name||name;
+if(m.k==='wait')show(`<div class="big">${name}</div><p class="m">Connected ✅<br>Waiting for the host…</p>`);
+else if(m.k==='hello')show(`<div class="big">${m.name}</div><p class="m">Connected ✅<br>Waiting for the battle…</p>`);
+else if(m.k==='locked')show('<div class="big">✅ Locked in</div><p class="m">Waiting for the other team…</p>');
+else if(m.k==='msg')show(`<div class="big" style="line-height:1.4">${m.text}</div>`+(m.hp?`<p class="m">❤️ ${m.hp[T]} · 🆚 ${m.hp[1-T]}</p>`:''));
+else if(m.k==='pick'){clearInterval(iv);v.innerHTML=`<div class="c" style="color:${col}"><div class="m">Round ${m.rd}/15 · ❤️ ${m.hp[T]} HP · 🆚 ${m.hp[1-T]} HP</div><div class="big">${m.name}: pick!</div></div><div class="g">${m.acts.map(a=>`<button class="${a.a==='s'?'sp':''}" data-a="${a.a}" ${a.c?'disabled':''}><span>${a.i}</span><b>${a.n}</b><small>${a.c?'🔒 '+a.c+' turn'+(a.c>1?'s':''):a.d}</small></button>`).join('')}</div>`;
+v.querySelectorAll('button').forEach(b=>b.onclick=()=>{vib();tx({k:'act',a:b.dataset.a});ui({k:'locked'});});}
+else if(m.k==='quiz'){let left=m.sec;v.innerHTML=`<div class="c" style="color:${col}"><div class="m">⚡ SPECIAL — answer!</div><div class="big" id="t">${left}</div><div class="bar"><i id="b"></i></div></div><p style="font-size:17px;line-height:1.4">${m.q}</p>${m.opts.map((o,i)=>`<button class="o" data-i="${i}">${'ABCD'[i]}. ${o}</button>`).join('')}`;
+v.querySelectorAll('.o').forEach(b=>b.onclick=()=>{vib();tx({k:'ans',i:+b.dataset.i});ui({k:'msg',text:'⏳ Answer sent…'});});
+iv=setInterval(()=>{left--;const t=document.getElementById('t');if(!t)return clearInterval(iv);t.textContent=Math.max(left,0);document.getElementById('b').style.width=Math.max(left,0)/m.sec*100+'%';if(left<=0)clearInterval(iv);},1000);}}
+</script></body></html>
