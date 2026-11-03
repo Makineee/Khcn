@@ -1,11 +1,13 @@
 // Robot Lab relay server: serves /public and relays messages between the host screen and 2 phone controllers.
 const http=require('http'),fs=require('fs'),path=require('path'),{WebSocketServer}=require('ws');
-const PORT=process.env.PORT||3000,PUB=path.join(__dirname,'public');
+const PORT=process.env.PORT||3000;
+// Serve /public if it exists, otherwise the same folder as server.js (only .html files then)
+const HASPUB=fs.existsSync(path.join(__dirname,'public')),PUB=HASPUB?path.join(__dirname,'public'):__dirname;
 const MIME={'.html':'text/html; charset=utf-8','.js':'text/javascript','.css':'text/css','.png':'image/png','.svg':'image/svg+xml'};
 const srv=http.createServer((req,res)=>{
   let u=decodeURIComponent(req.url.split('?')[0]);if(u==='/')u='/index.html';
   const f=path.join(PUB,path.normalize(u));
-  if(!f.startsWith(PUB)){res.writeHead(403);return res.end();}
+  if(!f.startsWith(PUB)||(!HASPUB&&path.extname(f)!=='.html')){res.writeHead(403);return res.end();}
   fs.readFile(f,(e,d)=>{if(e){res.writeHead(404);return res.end('Not found');}
     res.writeHead(200,{'Content-Type':MIME[path.extname(f)]||'application/octet-stream'});res.end(d);});
 });
