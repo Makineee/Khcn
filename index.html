@@ -53,32 +53,38 @@ input{font-family:inherit;background:#0a1226;border:1px solid var(--line);color:
 .opt.ok{background:#0d4a2d;border-color:var(--ok)}.opt.no{background:#5a1526;border-color:var(--bad)}
 .res{font-size:22px;font-weight:800;margin:8px 0}
 .mut{color:var(--mut);font-size:13px}.bar{height:8px;background:#0a1226;border-radius:6px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;width:100%;background:var(--ok);transition:width 1s linear,background .3s}.hp{height:10px;background:#0a1226;border-radius:6px;overflow:hidden;margin:4px 0}.hp i{display:block;height:100%;transition:width .8s}.arena{display:flex;justify-content:space-around;align-items:flex-end;margin:6px 0 10px}.vs{font-size:28px;font-weight:800;color:var(--mut);align-self:center}.fig{position:relative;width:40%;max-width:250px;transition:transform .25s}.fig svg{width:100%;height:auto;animation:bob 2.2s ease-in-out infinite}
-.f0.pn{animation:pn0 .7s}.f1.pn{animation:pn1 .7s}
-@keyframes pn0{0%,100%{transform:none}25%{transform:translateX(-10%) scale(.95)}50%{transform:translateX(65%) scale(1.15)}}
-@keyframes pn1{0%,100%{transform:none}25%{transform:translateX(10%) scale(.95)}50%{transform:translateX(-65%) scale(1.15)}}
-.f0.kk{animation:kk0 .8s}.f1.kk{animation:kk1 .8s}
-@keyframes kk0{0%,100%{transform:none}30%{transform:translateX(-10%) rotate(10deg)}55%{transform:translateX(65%) rotate(-28deg) scale(1.12)}75%{transform:translateX(30%) rotate(-10deg)}}
-@keyframes kk1{0%,100%{transform:none}30%{transform:translateX(10%) rotate(-10deg)}55%{transform:translateX(-65%) rotate(28deg) scale(1.12)}75%{transform:translateX(-30%) rotate(10deg)}}
-.fig.jmp{animation:jmp .9s}
-@keyframes jmp{0%,100%{transform:none}15%{transform:scale(1.1,.85)}45%{transform:translateY(-110px) scale(.95,1.1)}70%{transform:translateY(-110px)}90%{transform:scale(1.1,.88)}}
-.fig.gd{animation:gdd .9s;filter:drop-shadow(0 0 16px #5cf)}
-@keyframes gdd{0%,100%{transform:none}30%{transform:scale(1.12)}}
-.fig.sp{filter:drop-shadow(0 0 26px #ffe14d)}.f0.sp{animation:sp0 1.2s}.f1.sp{animation:sp1 1.2s}
-@keyframes sp0{0%{transform:none}10%{transform:scale(1.15) rotate(-3deg)}20%{transform:scale(1.2) rotate(3deg)}30%{transform:scale(1.25) rotate(-3deg)}40%{transform:scale(1.25) rotate(3deg)}65%{transform:translateX(70%) scale(1.3)}100%{transform:none}}
-@keyframes sp1{0%{transform:none}10%{transform:scale(1.15) rotate(3deg)}20%{transform:scale(1.2) rotate(-3deg)}30%{transform:scale(1.25) rotate(3deg)}40%{transform:scale(1.25) rotate(-3deg)}65%{transform:translateX(-70%) scale(1.3)}100%{transform:none}}
-.fig.fail{animation:wob 1s;opacity:.75}
-@keyframes wob{25%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}75%{transform:rotate(-4deg)}}
-.fig.hurt svg{animation:shake .7s .35s both;filter:drop-shadow(0 0 14px #f33) brightness(1.4)}
-@keyframes shake{0%{transform:none}15%{transform:translateX(-14px) rotate(-4deg)}35%{transform:translateX(12px) rotate(4deg)}55%{transform:translateX(-8px)}75%{transform:translateX(6px)}100%{transform:none}}
-.fig .dmg{animation:up2 1.5s .35s both}
-@keyframes up2{0%{opacity:0;transform:translate(-50%,0)}12%{opacity:1}100%{opacity:0;transform:translate(-50%,-70px)}}
-.fx{position:absolute;top:30%;left:50%;z-index:3;font-size:30px;font-weight:800;white-space:nowrap;text-shadow:3px 3px 0 #000,-2px -2px 0 #000;animation:fxp .9s .3s both;pointer-events:none}
-.fx::before{content:'✸';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:90px;opacity:.35;z-index:-1}
-@keyframes fxp{0%{transform:translate(-50%,-50%) scale(0) rotate(-15deg);opacity:0}30%{transform:translate(-50%,-50%) scale(1.5) rotate(8deg);opacity:1}100%{transform:translate(-50%,-70%) scale(1.1) rotate(-4deg);opacity:0}}
-.arena.big{animation:ash .5s .3s}
-@keyframes ash{25%{transform:translate(-6px,4px)}50%{transform:translate(6px,-4px)}75%{transform:translate(-4px,2px)}}
-.fig.ko{animation:ko 1.3s .5s both}
-@keyframes ko{to{transform:rotate(75deg) translateY(40px);opacity:.7}}
+.arena{position:relative}
+.f0.pn{animation:pn0 1.6s .9s both}.f1.pn{animation:pn1 1.6s .9s both}
+@keyframes pn0{0%,100%{transform:none}30%{transform:translateX(-14%) scale(.92)}50%,65%{transform:translateX(70%) scale(1.25)}}
+@keyframes pn1{0%,100%{transform:none}30%{transform:translateX(14%) scale(.92)}50%,65%{transform:translateX(-70%) scale(1.25)}}
+.f0.kk{animation:kk0 1.8s .9s both}.f1.kk{animation:kk1 1.8s .9s both}
+@keyframes kk0{0%,100%{transform:none}30%{transform:translateX(-12%) rotate(12deg)}55%,70%{transform:translateX(70%) rotate(-32deg) scale(1.2)}}
+@keyframes kk1{0%,100%{transform:none}30%{transform:translateX(12%) rotate(-12deg)}55%,70%{transform:translateX(-70%) rotate(32deg) scale(1.2)}}
+.fig.jmp{animation:jmp 1.8s .9s both}
+@keyframes jmp{0%,100%{transform:none}15%{transform:scale(1.15,.8)}45%{transform:translateY(-140px) scale(.95,1.15)}75%{transform:translateY(-140px) rotate(360deg)}90%{transform:scale(1.15,.85)}}
+.fig.gd{animation:gdd 1.6s .9s both}
+@keyframes gdd{0%,100%{transform:none;filter:none}25%,70%{transform:scale(1.2);filter:drop-shadow(0 0 30px #5cf) brightness(1.3)}}
+.f0.sp{animation:sp0 2.4s .9s both}.f1.sp{animation:sp1 2.4s .9s both}
+@keyframes sp0{0%,100%{transform:none;filter:none}10%{transform:scale(1.15) rotate(-4deg);filter:drop-shadow(0 0 30px #ffe14d) brightness(1.4)}20%{transform:scale(1.22) rotate(4deg)}30%{transform:scale(1.28) rotate(-4deg)}40%{transform:scale(1.3) rotate(4deg)}65%,75%{transform:translateX(75%) scale(1.35);filter:drop-shadow(0 0 45px #ffe14d) brightness(1.6)}}
+@keyframes sp1{0%,100%{transform:none;filter:none}10%{transform:scale(1.15) rotate(4deg);filter:drop-shadow(0 0 30px #ffe14d) brightness(1.4)}20%{transform:scale(1.22) rotate(-4deg)}30%{transform:scale(1.28) rotate(4deg)}40%{transform:scale(1.3) rotate(-4deg)}65%,75%{transform:translateX(-75%) scale(1.35);filter:drop-shadow(0 0 45px #ffe14d) brightness(1.6)}}
+.fig.fail{animation:wob 1.8s .9s both}
+@keyframes wob{0%,100%{transform:none;opacity:1}20%{transform:rotate(-12deg)}40%{transform:rotate(12deg)}60%{transform:rotate(-6deg) translateY(10px);opacity:.6}80%{opacity:.6}}
+.fig.hurt svg{animation:shake 1.2s var(--t) both}
+@keyframes shake{0%{transform:none;filter:drop-shadow(0 0 24px #f33) brightness(2.2)}15%{transform:translateX(-28px) rotate(-10deg)}35%{transform:translateX(24px) rotate(9deg)}55%{transform:translateX(-16px) rotate(-5deg)}75%{transform:translateX(10px)}100%{transform:none;filter:none}}
+.fig .dmg{font-size:52px;font-weight:800;animation:up2 2s var(--t) both}
+@keyframes up2{0%{opacity:0;transform:translate(-50%,0) scale(.3)}10%{opacity:1;transform:translate(-50%,-10px) scale(1.5)}25%{transform:translate(-50%,-25px) scale(1)}100%{opacity:0;transform:translate(-50%,-100px)}}
+.fx{position:absolute;top:30%;left:50%;z-index:3;font-size:48px;font-weight:800;white-space:nowrap;text-shadow:4px 4px 0 #000,-3px -3px 0 #000;animation:fxp 1.8s var(--t) both;pointer-events:none}
+.fx::before{content:'✸';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:150px;opacity:.5;z-index:-1}
+@keyframes fxp{0%{transform:translate(-50%,-50%) scale(0) rotate(-20deg);opacity:0}15%{transform:translate(-50%,-50%) scale(1.7) rotate(8deg);opacity:1}70%{transform:translate(-50%,-55%) scale(1.2) rotate(-3deg);opacity:1}100%{transform:translate(-50%,-80%) scale(1.1);opacity:0}}
+.pt{position:absolute;left:50%;top:40%;font-style:normal;font-size:30px;color:#ffe14d;z-index:3;animation:pt 1.2s var(--t) both}
+@keyframes pt{0%{opacity:1;transform:translate(0,0) scale(.4)}100%{opacity:0;transform:translate(var(--x),var(--y)) scale(1.8) rotate(180deg)}}
+.arena.big{animation:ash .9s var(--t)}
+@keyframes ash{10%{left:-14px;top:6px}30%{left:12px;top:-6px}50%{left:-10px;top:4px}70%{left:8px;top:-3px}100%{left:0;top:0}}
+.arena.big::after{content:'';position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:5;animation:flsh .8s var(--t) both}
+.arena.spl::after{background:#ffe14d}
+@keyframes flsh{0%{opacity:0}12%{opacity:.8}100%{opacity:0}}
+.fig.ko{animation:ko 1.8s calc(var(--t) + .4s) both}
+@keyframes ko{0%{transform:none}100%{transform:rotate(80deg) translateY(50px);opacity:.75}}
 .dmg{position:absolute;top:-6px;left:50%;font-size:34px;color:#ff4d6d;z-index:2;animation:up 1.4s both;text-shadow:0 0 8px #000}@keyframes up{from{transform:translate(-50%,0)}to{transform:translate(-50%,-50px);opacity:0}}.emo{position:absolute;top:-30px;left:50%;font-size:44px;z-index:2;animation:pop .6s both}@keyframes pop{from{transform:translateX(-50%) scale(0)}to{transform:translateX(-50%) scale(1)}}.acts{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}@media(max-width:700px){.acts{grid-template-columns:1fr 1fr}}.act{background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:10px 6px;display:flex;flex-direction:column;gap:4px;align-items:center;font-size:13px}.act span{font-size:30px}.act small{color:var(--mut);font-size:10px;text-align:center}.act:hover:not(:disabled){border-color:var(--a)}.act:disabled{opacity:.4;cursor:not-allowed}
 </style></head><body>
 <div class="wrap" id="app"></div>
@@ -201,13 +207,14 @@ function end(){const a=sc(0),b=sc(1),w=a===b?'It’s a tie!':`🏆 ${names[a>b?0
 modal(`<div class="center"><h1>BUILD COMPLETE</h1><div class="res">Time to fight! ⚔️</div><p class="mut">Each cardboard part = −8 starting HP</p><p>${names[0]}: <b style="color:${COL[0]}">${a}</b> /6 &nbsp;·&nbsp; ${names[1]}: <b style="color:${COL[1]}">${b}</b> /6</p><button class="btn" id="again">⚔️ START BATTLE</button></div>`).querySelector('#again').onclick=lobby;}
 const AC5={p:['👊','Punch'],k:['🦶','Kick'],g:['🛡️','High Guard'],j:['🦘','Jump'],s:['⚡','Special']};
 const DS={p:'12 dmg · High Guard blocks it',k:'18 dmg · Jump dodges it · every 2 turns',g:'Blocks Punch · every 2 turns',j:'Dodges Kick + counter 15',s:'35 dmg · quiz! · recharge 3 turns'};
+const PT=[[-80,-60],[80,-60],[-90,10],[90,10],[-35,-95],[35,-95],[0,-105]].map(([x,y])=>`<i class='pt' style='--x:${x}px;--y:${y}px'>✦</i>`).join('');
 let B;
 function battle(){document.querySelectorAll('.ov').forEach(e=>e.remove());busy=true;B={hp:[100-8*(6-sc(0)),100-8*(6-sc(1))],cd:[{g:0,k:0,s:0},{g:0,k:0,s:0}],rd:1,pk:[null,null],ch:0,an:['',''],dm:[0,0],em:['',''],msg:'',lock:false,ph:!HOT};bs();sendPicks();}
 function bs(){const t=B.ch,L=B.lock;
 const hp=i=>`<div class='score' style='color:${COL[i]};border-color:${COL[i]}'>${names[i]}<div class='hp'><i style='width:${B.hp[i]}%;background:${COL[i]}'></i></div><b style='font-size:18px'>${B.hp[i]} HP</b></div>`;
-const fig=i=>`<div class='fig f${i} ${B.an[i]}'>${B.dm[i]?`<b class='dmg'>-${B.dm[i]}</b>`:''}${B.fx&&B.fx[i]?`<span class='fx' style='color:${B.fx[i][1]}'>${B.fx[i][0]}</span>`:''}${B.em[i]?`<span class='emo'>${B.em[i]}</span>`:''}${robot(i,0,null)}</div>`;
+const fig=i=>`<div class='fig f${i} ${B.an[i]}'>${B.dm[i]?`<b class='dmg'>-${B.dm[i]}</b>`:''}${B.fx&&B.fx[i]&&B.dm[i]?PT:''}${B.fx&&B.fx[i]?`<span class='fx' style='color:${B.fx[i][1]}'>${B.fx[i][0]}</span>`:''}${B.em[i]?`<span class='emo'>${B.em[i]}</span>`:''}${robot(i,0,null)}</div>`;
 const st=i=>B.pk[i]?'✅ locked in':'🤔 thinking…';const panel=B.ph&&!L?`<div class='center res'>📱 ${names[0]}: ${st(0)}<br>📱 ${names[1]}: ${st(1)}</div>`:L?`<div class='center res'>${B.msg}</div>`:`<p class='center'><b style='color:${COL[t]}'>${names[t]}</b> — pick an action<br><span class='mut'>${t?'✅ '+names[0]+' locked in':'(other team: look away 👀)'}</span></p><div class='acts'>${Object.keys(AC5).map(a=>{const c=B.cd[t][a]||0;return `<button class='act' data-a='${a}' ${c?'disabled':''}><span>${AC5[a][0]}</span><b>${AC5[a][1]}</b><small>${c?'🔒 '+c+' turn'+(c>1?'s':''):DS[a]}</small></button>`}).join('')}</div>`;
-app.innerHTML=`<div class='hud'>${hp(0)}${hp(1)}</div><div class='banner'>⚔️ Round ${B.rd}/15</div><div class='arena ${B.big?'big':''}'>${fig(0)}<div class='vs'>VS</div>${fig(1)}</div>${panel}`;
+app.innerHTML=`<div class='hud'>${hp(0)}${hp(1)}</div><div class='banner'>⚔️ Round ${B.rd}/15</div><div class='arena ${B.big?'big':''} ${B.spl?'spl':''}' style='--t:${B.imp||0}s'>${fig(0)}<div class='vs'>VS</div>${fig(1)}</div>${panel}`;
 app.querySelectorAll('.act').forEach(b=>b.onclick=()=>bpick(b.dataset.a));}
 function bpick(a){B.pk[B.ch]=a;if(B.ch===0){B.ch=1;bs();}else{B.lock=true;B.msg='⏳ …';bs();bres();}}
 function quizq(t,cb){if(!pool.length)pool=QS.map(q=>q).sort(()=>Math.random()-.5);cur=t;
@@ -226,14 +233,14 @@ else if(a==='k'){an[i]='atk kk';if(o==='j'){ev.push(`🦘 ${m} dodged the kick!`
 else if(a==='g')an[i]='gd';
 else if(a==='j'){an[i]='jmp';if(o==='k'){d[1-i]+=15;fx[1-i]=['BOING!','#ff6fb5'];ev.push(`🦘 ${n} counter-attacks!`)}}
 else if(a==='s'){if(sp[i]){an[i]='atk sp';d[1-i]+=35;fx[1-i]=['KABOOM!','#ff4d6d'];ev.push(`⚡ ${n}’s SPECIAL lands!`)}else{an[i]='fail';fx[i]=['FIZZLE…','#8aa0c8'];ev.push(`💨 ${n}’s special FAILED!`)}}});
-B.hp=B.hp.map((h,i)=>Math.max(0,h-d[i]));B.dm=d;d.forEach((v,i)=>{if(v)an[i]+=' hurt';if(B.hp[i]<=0)an[i]+=' ko'});B.an=an;B.fx=fx;B.big=d.some(v=>v>=15);
+B.hp=B.hp.map((h,i)=>Math.max(0,h-d[i]));B.dm=d;d.forEach((v,i)=>{if(v)an[i]+=' hurt';if(B.hp[i]<=0)an[i]+=' ko'});B.an=an;B.fx=fx;B.big=d.some(v=>v>=15);B.spl=!!(sp[0]||sp[1]);B.imp=.9+(B.spl?1.56:B.pk.includes('k')?1.0:.8);
 B.em=B.pk.map((a,i)=>a==='s'&&!sp[i]?'💨':AC5[a][0]);
 B.msg=`<div style='font-size:26px'>${names[0]} ${AC5[x][0]} <span class='mut'>vs</span> ${AC5[y][0]} ${names[1]}</div><div>${ev.join(' · ')||'Nothing happens…'}</div>`;
 ['g','k','s'].forEach(k=>[0,1].forEach(i=>{if(B.cd[i][k]>0)B.cd[i][k]--}));
 [0,1].forEach(i=>{const a=B.pk[i];if(a==='g'||a==='k')B.cd[i][a]=1;if(a==='s')B.cd[i].s=3});
 if(B.ph)tx('all',{k:'msg',text:AC5[x][0]+' vs '+AC5[y][0]+' — '+(ev.join(' · ')||'Nothing happens…'),hp:B.hp});
 bs();
-setTimeout(()=>{if(B.hp[0]<=0||B.hp[1]<=0||B.rd>=15)return bend();B.rd++;B.pk=[null,null];B.ch=0;B.an=['',''];B.dm=[0,0];B.em=['',''];B.fx=null;B.big=0;B.lock=false;B.msg='';bs();sendPicks();},3400);};
+setTimeout(()=>{if(B.hp[0]<=0||B.hp[1]<=0||B.rd>=15)return bend();B.rd++;B.pk=[null,null];B.ch=0;B.an=['',''];B.dm=[0,0];B.em=['',''];B.fx=null;B.big=0;B.spl=0;B.imp=0;B.lock=false;B.msg='';bs();sendPicks();},(B.imp+2.6)*1000);};
 go(0);}
 function bend(){if(B.ph)tx('all',{k:'msg',text:B.hp[0]===B.hp[1]?'🤝 Draw!':'🏆 '+names[B.hp[0]>B.hp[1]?0:1]+' wins!'});const[a,b]=B.hp,w=a===b?'It’s a draw! 🤝':`🏆 ${names[a>b?0:1]} wins the battle!`;
 modal(`<div class='center'><h1>${a<=0||b<=0?'K.O.! 💥':'TIME!'}</h1><div class='res'>${w}</div><p>${names[0]}: ${a} HP · ${names[1]}: ${b} HP</p><button class='btn' id='again'>PLAY AGAIN</button></div>`).querySelector('#again').onclick=()=>{document.querySelectorAll('.ov').forEach(e=>e.remove());B=null;HOT=false;hello();setup();};}
