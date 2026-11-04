@@ -85,6 +85,28 @@ input{font-family:inherit;background:#0a1226;border:1px solid var(--line);color:
 @keyframes flsh{0%{opacity:0}12%{opacity:.8}100%{opacity:0}}
 .fig.ko{animation:ko 1.8s calc(var(--t) + .4s) both}
 @keyframes ko{0%{transform:none}100%{transform:rotate(80deg) translateY(50px);opacity:.75}}
+.win-ov{flex-direction:column;background:radial-gradient(circle,#2a1a5e,#070b17);overflow:hidden}
+.cf{position:fixed;top:-30px;z-index:1;border-radius:2px;animation:cfall linear infinite}
+@keyframes cfall{to{transform:translateY(110vh) rotate(720deg)}}
+.ro{position:fixed;bottom:-50px;font-size:36px;z-index:1;animation:rise 4.5s linear infinite}
+@keyframes rise{to{transform:translateY(-115vh) rotate(30deg)}}
+.rb{font-size:clamp(26px,6vw,56px);margin:4px 0 10px;background:linear-gradient(90deg,#ff4d6d,#ffe14d,#3dff9a,#22e6ff,#c77dff,#ff4d6d);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rbm 2s linear infinite,pls 1s ease-in-out infinite}
+@keyframes rbm{to{background-position:300% 0}}@keyframes pls{50%{transform:scale(1.08)}}
+.stage{display:flex;justify-content:center;gap:20px}
+.win{position:relative;width:min(55vw,340px);filter:drop-shadow(0 0 30px #ffe14d);animation:zin .9s cubic-bezier(.2,1.5,.4,1) both,dance 1s .9s ease-in-out infinite}
+.win.sm{width:min(38vw,230px);filter:none}.win svg{width:100%;height:auto;display:block}
+@keyframes zin{from{transform:scale(0) rotate(-180deg);opacity:0}}
+@keyframes dance{0%,100%{transform:translateY(0) rotate(-5deg)}25%{transform:translateY(-30px) rotate(5deg) scale(1.05)}50%{transform:translateY(0) rotate(-5deg)}75%{transform:translateY(-30px) rotate(5deg) scale(1.05)}}
+.crown{position:absolute;top:-26px;left:50%;font-size:56px;z-index:2;transform:translateX(-50%);animation:crw 1s ease-in-out infinite}
+@keyframes crw{50%{transform:translateX(-50%) translateY(-8px) rotate(10deg)}}
+.how{max-width:780px;margin:0 auto}.how h1{font-size:clamp(18px,4vw,28px)}
+.hw{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;margin:10px 0}
+.th{width:72px;height:84px;background:#0a1226;border:2px solid var(--line);border-radius:10px}
+.arr{font-size:28px;color:var(--mut)}
+.ac{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;text-align:left}
+.ac div{background:#0a1226;border:1px solid var(--line);border-radius:10px;padding:8px;font-size:13px}.ac b{font-size:16px}
+.logo{font-size:clamp(26px,7vw,62px);margin:6px 0;text-shadow:0 0 24px #22e6ff}
+.bobs svg{width:100%;height:auto;animation:bob 2.2s ease-in-out infinite}
 .dmg{position:absolute;top:-6px;left:50%;font-size:34px;color:#ff4d6d;z-index:2;animation:up 1.4s both;text-shadow:0 0 8px #000}@keyframes up{from{transform:translate(-50%,0)}to{transform:translate(-50%,-50px);opacity:0}}.emo{position:absolute;top:-30px;left:50%;font-size:44px;z-index:2;animation:pop .6s both}@keyframes pop{from{transform:translateX(-50%) scale(0)}to{transform:translateX(-50%) scale(1)}}.acts{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}@media(max-width:700px){.acts{grid-template-columns:1fr 1fr}}.act{background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:10px 6px;display:flex;flex-direction:column;gap:4px;align-items:center;font-size:13px}.act span{font-size:30px}.act small{color:var(--mut);font-size:10px;text-align:center}.act:hover:not(:disabled){border-color:var(--a)}.act:disabled{opacity:.4;cursor:not-allowed}
 </style></head><body>
 <div class="wrap" id="app"></div>
@@ -167,10 +189,24 @@ function snd(ok){try{AC=AC||new AudioContext();const t=AC.currentTime;
 const n=(f,d,ty,st)=>{const o=AC.createOscillator(),g=AC.createGain();o.type=ty;o.frequency.setValueAtTime(f,t+st);if(!ok)o.frequency.exponentialRampToValueAtTime(40,t+st+d);g.gain.setValueAtTime(.15,t+st);g.gain.exponentialRampToValueAtTime(.001,t+st+d);o.connect(g);g.connect(AC.destination);o.start(t+st);o.stop(t+st+d);};
 if(ok){n(660,.15,'sine',0);n(990,.3,'sine',.12)}else{n(220,.6,'sawtooth',0);n(120,.7,'square',.05)}}catch(e){}}
 // ====== SCREENS ======
-function setup(){app.innerHTML=`<h1>🤖 ROBOT ASSEMBLY LAB</h1><p class="center mut">Answer correctly to build your robot. Wrong answer = the part explodes and becomes cardboard!</p>
-<div class="card" style="max-width:480px;margin:20px auto"><p class="mut">Team 1 name</p><input id="n0" value="Team Cyan"><p class="mut">Team 2 name</p><input id="n1" value="Team Orange">
-<p class="mut">Turn order</p><select id="md" style="width:100%;padding:10px;font-family:inherit;background:#0a1226;color:#e6f0ff;border:1px solid #243558;border-radius:8px;font-size:15px"><option value="alt">Alternate (A, B, A, B…)</option><option value="seq">One team builds fully, then the other</option></select><p class="center"><button class="btn" id="go">START ▶</button></p></div>`;
-$('go').onclick=()=>{names=[$('n0').value||'Team 1',$('n1').value||'Team 2'];mode=$('md').value;newGame();board();};}
+const MA={head:0,body:3,armL:2,armR:4,legL:2,legR:3},MB={head:4,body:1,armL:0,armR:1,legL:0,legR:4};
+function mascot(c,v){let h=`<svg viewBox='0 0 200 270'><ellipse cx='100' cy='262' rx='70' ry='7' fill='${c}' opacity='.2'/>`;['legL','legR','body','armL','armR','head'].forEach(s=>{h+=wrap(s,part(s,v[s],c))});return h+'</svg>';}
+const mini=(s,v,c)=>{const[x,y,w,h]=BB[s],p=6;return `<svg class='th' viewBox='${x-p} ${y-p} ${w+2*p} ${h+2*p}'>${part(s,v,c)}</svg>`;};
+const bxs=s=>{const[x,y,w,h]=BB[s],p=6;return `<svg class='th' viewBox='${x-p} ${y-p} ${w+2*p} ${h+2*p}'>${box(s)}</svg>`;};
+const bigb=`style='display:flex;align-items:center;justify-content:center;font-size:32px'`;
+const HW=[
+['1 · BUILD YOUR ROBOT',()=>`<div class='hw'><div style='width:150px'>${mascot(COL[0],MA)}</div><div style='text-align:left;line-height:2'>• Head<br>• Body<br>• Left arm<br>• Right arm<br>• Left leg<br>• Right leg</div></div><p>Two teams take turns. Each team builds <b>ONE robot</b> out of <b>6 parts</b>.</p>`],
+['2 · PICK A PART & ANSWER',()=>`<div class='hw'><div class='th' style='border-style:dashed;display:flex;align-items:center;justify-content:center;font-size:32px'>＋</div><span class='arr'>➜</span>${[0,1,2,3,4].map(v=>mini('head',v,COL[0])).join('')}<span class='arr'>➜</span><div class='th' style='display:flex;align-items:center;justify-content:center;font-size:34px'>❓</div></div><p>① Click a glowing <b>＋</b> slot &nbsp;② Choose 1 of 5 designs &nbsp;③ Answer the quiz in <b>15 seconds</b></p><div class='hw'><div class='card' style='border-color:var(--ok)'>${mini('head',2,COL[0])}<br>✅ <b>Correct</b><br><small class='mut'>Part is attached!</small></div><div class='card' style='border-color:var(--bad)'><span style='font-size:30px'>💥 ➜</span>${bxs('head')}<br>❌ <b>Wrong / time's up</b><br><small class='mut'>Part explodes → cardboard</small></div></div>`],
+['3 · BATTLE TIME',()=>`<div class='hw'><div style='width:130px'>${mascot(COL[0],MA)}</div><div style='font-size:40px'>⚔️</div><div style='width:130px'>${mascot(COL[1],MB)}</div></div><div class='hw'><span style='font-size:44px'>📱</span><p style='max-width:420px'>Each team scans a QR code with a <b>phone</b> and <b>secretly</b> picks an action. Both are revealed at the same time!</p><span style='font-size:44px'>📱</span></div><p class='mut'>❤️ Each robot starts with 100 HP, minus 8 for every cardboard part</p>`],
+['4 · ACTIONS',()=>`<div class='ac'><div><b>👊 Punch</b><br>12 dmg · blocked by High Guard</div><div><b>🦶 Kick</b><br>18 dmg · dodged by Jump · once every 2 turns</div><div><b>🛡️ High Guard</b><br>Blocks Punch (not Kick) · once every 2 turns</div><div><b>🦘 Jump</b><br>Dodges Kick and counter-attacks for 15</div><div><b>⚡ Special</b><br>35 dmg, unstoppable · answer a quiz to cast it · recharge 3 turns</div></div><div class='hw' style='font-size:18px;margin-top:14px'><span>👊 + 🛡️ → <b style='color:#5cf'>BLOCKED</b></span><span>🦶 + 🦘 → <b style='color:var(--ok)'>DODGE + counter!</b></span><span>⚡ → <b style='color:#ffe14d'>UNSTOPPABLE</b></span></div>`],
+['5 · HOW TO WIN',()=>`<div class='win' style='width:190px;margin:22px auto 6px'><div class='crown'>👑</div>${mascot(COL[0],MA)}</div><p>Reduce the other robot's HP to <b>0</b> for a <b>K.O.</b>!<br>If nobody is down after <b>15 rounds</b>, the robot with more HP wins. 🏆</p>`]];
+function startGame(){names=['Team Cyan','Team Orange'];mode='alt';newGame();board();}
+function howto(n){const[tt,fn]=HW[n],last=n===HW.length-1;
+app.innerHTML=`<div class='how'><h1 class='center'>${tt}</h1><div class='card center' style='min-height:340px'>${fn()}</div><div class='hw' style='margin-top:12px'>${n?`<button class='pk' id='hp' style='padding:10px 18px'>◀ Back</button>`:`<button class='pk' id='hm' style='padding:10px 18px'>☰ Menu</button>`}<span class='mut'>${HW.map((_,i)=>i===n?'●':'○').join(' ')}</span>${last?`<button class='btn' id='hs'>START ▶</button>`:`<button class='btn' id='hn'>Next ▶</button>`}</div></div>`;
+const g=id=>document.getElementById(id);
+if(g('hp'))g('hp').onclick=()=>howto(n-1);if(g('hm'))g('hm').onclick=setup;if(g('hn'))g('hn').onclick=()=>howto(n+1);if(g('hs'))g('hs').onclick=startGame;}
+function setup(){app.innerHTML=`<div class='center' style='padding-top:3vh'><h1 class='logo'>🤖 ROBOT ASSEMBLY LAB</h1><p class='mut'>Science &amp; Technology English Challenge</p><div class='hw' style='margin:14px 0;flex-wrap:nowrap'><div class='bobs' style='width:min(36vw,230px)'>${mascot(COL[0],MA)}</div><div style='font-size:42px'>⚔️</div><div class='bobs' style='width:min(36vw,230px)'>${mascot(COL[1],MB)}</div></div><p><button class='btn' id='go' style='font-size:22px;padding:16px 44px'>▶ START</button></p><p><button class='pk' id='hw' style='padding:10px 22px;font-size:15px'>❓ HOW TO PLAY</button></p></div>`;
+$('go').onclick=startGame;$('hw').onclick=()=>howto(0);}
 function robot(t,r,ev){const c=COL[t],R=G[t][r];let h=`<svg viewBox="0 0 200 270" data-t="${t}" data-r="${r}"><ellipse cx="100" cy="262" rx="70" ry="7" fill="${c}" opacity=".2"/>`;
 ['legL','legR','body','armL','armR','head'].forEach(s=>{const v=R[s],e=ev&&ev.t===t&&ev.r===r&&ev.s===s,[x,y,w,hh]=BB[s],act=t===cur&&!busy;
 let inner='';
@@ -242,8 +278,17 @@ if(B.ph)tx('all',{k:'msg',text:AC5[x][0]+' vs '+AC5[y][0]+' — '+(ev.join(' · 
 bs();
 setTimeout(()=>{if(B.hp[0]<=0||B.hp[1]<=0||B.rd>=15)return bend();B.rd++;B.pk=[null,null];B.ch=0;B.an=['',''];B.dm=[0,0];B.em=['',''];B.fx=null;B.big=0;B.spl=0;B.imp=0;B.lock=false;B.msg='';bs();sendPicks();},(B.imp+2.6)*1000);};
 go(0);}
-function bend(){if(B.ph)tx('all',{k:'msg',text:B.hp[0]===B.hp[1]?'🤝 Draw!':'🏆 '+names[B.hp[0]>B.hp[1]?0:1]+' wins!'});const[a,b]=B.hp,w=a===b?'It’s a draw! 🤝':`🏆 ${names[a>b?0:1]} wins the battle!`;
-modal(`<div class='center'><h1>${a<=0||b<=0?'K.O.! 💥':'TIME!'}</h1><div class='res'>${w}</div><p>${names[0]}: ${a} HP · ${names[1]}: ${b} HP</p><button class='btn' id='again'>PLAY AGAIN</button></div>`).querySelector('#again').onclick=()=>{document.querySelectorAll('.ov').forEach(e=>e.remove());B=null;HOT=false;hello();setup();};}
+function fanfare(){try{AC=AC||new AudioContext();const t=AC.currentTime;[523,659,784,1047,784,1047,1319].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.type='square';o.frequency.value=f;g.gain.setValueAtTime(.12,t+i*.18);g.gain.exponentialRampToValueAtTime(.001,t+i*.18+.3);o.connect(g);g.connect(AC.destination);o.start(t+i*.18);o.stop(t+i*.18+.32);});}catch(e){}}
+function bend(){const[a,b]=B.hp,dr=a===b,w=a>b?0:1;
+if(B.ph)[0,1].forEach(t=>tx(t,{k:'msg',text:dr?'🤝 Draw!':t===w?'🎉🏆 YOU WIN! 🏆🎉':'Good game! 💪'}));
+fanfare();
+const cf=Array.from({length:70},()=>`<i class='cf' style='left:${Math.random()*100}%;background:hsl(${Math.random()*360},90%,60%);width:${6+Math.random()*8}px;height:${10+Math.random()*12}px;animation-duration:${2.5+Math.random()*3}s;animation-delay:${Math.random()*3}s'></i>`).join('');
+const em=Array.from({length:14},(_,i)=>`<b class='ro' style='left:${3+i*7}%;animation-delay:${i*.35}s'>${['🎉','🎊','✨','🏆','🎈'][i%5]}</b>`).join('');
+const fg=t=>`<div class='win ${dr?'sm':''}'>${dr?'':`<div class='crown'>👑</div>`}${robot(t,0,null)}</div>`;
+const o=document.createElement('div');o.className='ov win-ov';
+o.innerHTML=`${cf}${em}<div class='center' style='position:relative;z-index:2;width:100%'><h1 class='rb'>${dr?'IT’S A DRAW! 🤝':'🏆 '+names[w]+' WINS! 🏆'}</h1><div class='stage'>${dr?fg(0)+fg(1):fg(w)}</div><p class='res'>${names[0]}: ${a} HP · ${names[1]}: ${b} HP</p><button class='btn' id='again'>PLAY AGAIN</button></div>`;
+document.body.appendChild(o);
+o.querySelector('#again').onclick=()=>{document.querySelectorAll('.ov').forEach(e=>e.remove());B=null;HOT=false;hello();setup();};}
 
 let HOT=false,PL=[0,0],ws,lob=0,QZ=null;
 function tx(team,msg){if(ws&&ws.readyState===1)ws.send(JSON.stringify({type:'to',team,msg}));}
