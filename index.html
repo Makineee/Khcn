@@ -107,9 +107,53 @@ input{font-family:inherit;background:#0a1226;border:1px solid var(--line);color:
 .ac div{background:#0a1226;border:1px solid var(--line);border-radius:10px;padding:8px;font-size:13px}.ac b{font-size:16px}
 .logo{font-size:clamp(26px,7vw,62px);margin:6px 0;text-shadow:0 0 24px #22e6ff}
 .bobs svg{width:100%;height:auto;animation:bob 2.2s ease-in-out infinite}
+body{padding-bottom:44px}.np{position:fixed;left:8px;right:8px;bottom:calc(6px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;align-items:center;justify-content:center;font-size:10px;color:var(--mut);z-index:20;pointer-events:none;text-align:center}.np button{pointer-events:auto;width:auto;padding:4px 8px;font-size:16px;background:var(--panel);border:1px solid var(--line);border-radius:8px;cursor:pointer}
+.menu{position:relative;overflow:hidden;min-height:calc(100vh - 70px);border-radius:16px;background:radial-gradient(circle at 50% 35%,#2b1b70,#0a1030 55%,#070b17);border:1px solid var(--line)}
+.mc{position:relative;z-index:2;text-align:center;padding:3vh 10px}
+.gridf{position:absolute;left:-50%;right:-50%;bottom:0;height:45%;background-image:linear-gradient(#22e6ff66 2px,transparent 2px),linear-gradient(90deg,#22e6ff66 2px,transparent 2px);background-size:60px 60px;transform:perspective(300px) rotateX(62deg);transform-origin:bottom;animation:gm 1.2s linear infinite;-webkit-mask-image:linear-gradient(transparent,#000);mask-image:linear-gradient(transparent,#000)}
+@keyframes gm{to{background-position:0 60px}}
+.fl{position:absolute;bottom:-50px;opacity:.45;font-style:normal;animation:rise2 linear infinite;z-index:1}
+@keyframes rise2{to{transform:translateY(-125vh) rotate(360deg)}}
+.chip{display:inline-block;border:1px solid #22e6ff;color:#22e6ff;border-radius:20px;padding:4px 14px;font-size:11px;letter-spacing:2px;background:#22e6ff18;margin-bottom:8px}
+.gl{position:relative;display:block;margin:0;font-size:clamp(38px,10vw,100px);font-weight:800;line-height:1;color:#fff;text-shadow:0 0 18px #22e6ff,0 0 48px #22e6ff;letter-spacing:4px;animation:tin .8s cubic-bezier(.2,1.6,.4,1) both}
+.gl2{font-size:clamp(24px,6.5vw,62px);color:#ffd9b0;text-shadow:0 0 18px #ff8a3d,0 0 48px #ff8a3d;animation-delay:.25s}
+.gl::before,.gl::after{content:attr(data-t);position:absolute;left:0;top:0;width:100%;overflow:hidden;text-shadow:none}
+.gl::before{color:#ff4d6d;clip-path:inset(0 0 60% 0);animation:g1 2.6s infinite steps(1)}
+.gl::after{color:#22e6ff;clip-path:inset(60% 0 0 0);animation:g2 3.1s infinite steps(1)}
+@keyframes g1{0%,88%{transform:translate(0)}90%{transform:translate(-6px,2px)}94%{transform:translate(5px,-2px)}100%{transform:translate(0)}}
+@keyframes g2{0%,80%{transform:translate(0)}83%{transform:translate(6px,-2px)}88%{transform:translate(-5px,2px)}100%{transform:translate(0)}}
+@keyframes tin{from{transform:translateY(-80px) scale(.5);opacity:0}}
+.arenam{display:flex;justify-content:center;align-items:center;gap:2vw;margin:8px 0}
+.mr{width:min(32vw,250px)}.mL{--g:#22e6ff;animation:lgL 3s ease-in-out infinite}.mR{--g:#ff8a3d;animation:lgR 3s 1.5s ease-in-out infinite}
+.mr svg{width:100%;height:auto;display:block;filter:drop-shadow(0 0 22px var(--g))}
+@keyframes lgL{0%,100%{transform:none}10%{transform:translateX(-8%) scale(.96)}18%{transform:translateX(26%) scale(1.1) rotate(4deg)}30%{transform:none}55%{transform:translateY(-12px)}75%{transform:none}}
+@keyframes lgR{0%,100%{transform:none}10%{transform:translateX(8%) scale(.96)}18%{transform:translateX(-26%) scale(1.1) rotate(-4deg)}30%{transform:none}55%{transform:translateY(-12px)}75%{transform:none}}
+.vsx{font-size:clamp(34px,8vw,72px);font-weight:800;color:#ffe14d;text-shadow:3px 3px 0 #ff4d6d,0 0 30px #ffe14d;animation:vsp 1s ease-in-out infinite}
+@keyframes vsp{0%,100%{transform:scale(1) rotate(-6deg)}50%{transform:scale(1.25) rotate(6deg)}}
+.steps{display:flex;gap:10px;justify-content:center;align-items:center;margin:12px 0 18px;flex-wrap:wrap}
+.steps span{background:#0f1830cc;border:1px solid var(--line);border-radius:20px;padding:6px 14px;font-size:13px;animation:stp .7s both}
+.steps span:nth-child(3){animation-delay:.25s}.steps span:nth-child(5){animation-delay:.5s}.steps b{color:#ffe14d}
+@keyframes stp{from{transform:translateY(20px) scale(.6);opacity:0}}
+.go{font-family:inherit;font-size:clamp(22px,4vw,32px);font-weight:800;color:#021;border:0;border-radius:16px;padding:18px 60px;background:linear-gradient(90deg,#22e6ff,#7a8bff,#ff6fb5,#22e6ff);background-size:300% 100%;animation:gbg 3s linear infinite,gpl 1.4s ease-in-out infinite;box-shadow:0 0 30px #22e6ff99;position:relative;overflow:hidden;cursor:pointer}
+.go::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:rgba(255,255,255,.55);transform:skewX(-20deg);animation:shn 2.5s infinite}
+@keyframes gbg{to{background-position:300% 0}}@keyframes gpl{50%{transform:scale(1.07)}}@keyframes shn{to{left:140%}}
+.go:hover{filter:brightness(1.15)}
+.hwb{margin-top:16px;font-family:inherit;background:transparent;border:2px solid #ffe14d;color:#ffe14d;border-radius:12px;padding:10px 26px;font-size:15px;cursor:pointer;text-shadow:0 0 8px #ffe14d}.hwb:hover{background:#ffe14d22}
+.bg5{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}@media(max-width:640px){.bg5{grid-template-columns:repeat(2,1fr)}}
+.bc{background:#0a1226;border:2px solid var(--line);border-radius:14px;padding:12px 6px;text-align:center}.bc span{font-size:46px;display:block;line-height:1.1}.bc b{font-size:15px}.bc small{display:block;color:var(--mut);font-size:12px;margin:4px 0;min-height:30px}.bc em{display:inline-block;font-style:normal;background:#ff4d6d33;border-radius:10px;padding:3px 10px;font-size:12px}.bc em.n{background:#55ccff33}.bc em.y{background:#ffe14d33}
+.mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+.mu{display:flex;align-items:center;justify-content:center;gap:8px;background:#0a1226;border:1px solid var(--line);border-radius:12px;padding:14px 8px 8px}
+.mb{position:relative;width:62px;flex:none}.mb .bub{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:28px;z-index:2}.mb svg{width:100%;height:auto;display:block}
+.mu .x{color:var(--mut);font-size:12px}
+.out{flex:1;min-width:120px;text-align:left;font-size:13px;line-height:1.35;padding:6px 10px;border-radius:8px}
+.out.g{background:#3dff9a22;border-left:4px solid var(--ok)}.out.r{background:#ff4d6d22;border-left:4px solid var(--bad)}.out.b{background:#55ccff22;border-left:4px solid #5cf}.out.y{background:#ffe14d22;border-left:4px solid #ffe14d}
+.cd{display:flex;gap:6px;align-items:center;justify-content:center;margin:10px 0 2px}.cd i{font-style:normal;width:54px;height:54px;display:flex;align-items:center;justify-content:center;font-size:26px;border-radius:10px;background:#0a1226;border:2px solid var(--line)}.cd i.u{border-color:#ffe14d}.cd i.l{opacity:.55}.cd i.rd{border-color:var(--ok)}.cd small{width:84px;font-size:12px;text-align:right;color:var(--tx)}
 .dmg{position:absolute;top:-6px;left:50%;font-size:34px;color:#ff4d6d;z-index:2;animation:up 1.4s both;text-shadow:0 0 8px #000}@keyframes up{from{transform:translate(-50%,0)}to{transform:translate(-50%,-50px);opacity:0}}.emo{position:absolute;top:-30px;left:50%;font-size:44px;z-index:2;animation:pop .6s both}@keyframes pop{from{transform:translateX(-50%) scale(0)}to{transform:translateX(-50%) scale(1)}}.acts{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}@media(max-width:700px){.acts{grid-template-columns:1fr 1fr}}.act{background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:10px 6px;display:flex;flex-direction:column;gap:4px;align-items:center;font-size:13px}.act span{font-size:30px}.act small{color:var(--mut);font-size:10px;text-align:center}.act:hover:not(:disabled){border-color:var(--a)}.act:disabled{opacity:.4;cursor:not-allowed}
 </style></head><body>
 <div class="wrap" id="app"></div>
+<audio id="bgm" src="music.mp3" loop preload="auto"></audio>
+<audio id="bgm2" src="battle.mp3" loop preload="auto"></audio>
+<div class="np"><span>♪ Music by Toby Fox: “TV WORLD” (DELTARUNE Chapters 3 &amp; 4 Soundtrack) · “MEGALOVANIA” (UNDERTALE) · © Toby Fox · used for non-commercial educational purposes</span><button id="mu" onclick="bgmTog()">🔊</button></div>
 <script>
 // ====== QUESTION BANK: first answer is the CORRECT one (options are shuffled in game) ======
 const QS=[
@@ -198,14 +242,23 @@ const HW=[
 ['1 · BUILD YOUR ROBOT',()=>`<div class='hw'><div style='width:150px'>${mascot(COL[0],MA)}</div><div style='text-align:left;line-height:2'>• Head<br>• Body<br>• Left arm<br>• Right arm<br>• Left leg<br>• Right leg</div></div><p>Two teams take turns. Each team builds <b>ONE robot</b> out of <b>6 parts</b>.</p>`],
 ['2 · PICK A PART & ANSWER',()=>`<div class='hw'><div class='th' style='border-style:dashed;display:flex;align-items:center;justify-content:center;font-size:32px'>＋</div><span class='arr'>➜</span>${[0,1,2,3,4].map(v=>mini('head',v,COL[0])).join('')}<span class='arr'>➜</span><div class='th' style='display:flex;align-items:center;justify-content:center;font-size:34px'>❓</div></div><p>① Click a glowing <b>＋</b> slot &nbsp;② Choose 1 of 5 designs &nbsp;③ Answer the quiz in <b>15 seconds</b></p><div class='hw'><div class='card' style='border-color:var(--ok)'>${mini('head',2,COL[0])}<br>✅ <b>Correct</b><br><small class='mut'>Part is attached!</small></div><div class='card' style='border-color:var(--bad)'><span style='font-size:30px'>💥 ➜</span>${bxs('head')}<br>❌ <b>Wrong / time's up</b><br><small class='mut'>Part explodes → cardboard</small></div></div>`],
 ['3 · BATTLE TIME',()=>`<div class='hw'><div style='width:130px'>${mascot(COL[0],MA)}</div><div style='font-size:40px'>⚔️</div><div style='width:130px'>${mascot(COL[1],MB)}</div></div><div class='hw'><span style='font-size:44px'>📱</span><p style='max-width:420px'>Each team scans a QR code with a <b>phone</b> and <b>secretly</b> picks an action. Both are revealed at the same time!</p><span style='font-size:44px'>📱</span></div><p class='mut'>❤️ Each robot starts with 100 HP, minus 8 for every cardboard part</p>`],
-['4 · ACTIONS',()=>`<div class='ac'><div><b>👊 Punch</b><br>12 dmg · blocked by High Guard</div><div><b>🦶 Kick</b><br>18 dmg · dodged by Jump · once every 2 turns</div><div><b>🛡️ High Guard</b><br>Blocks Punch (not Kick) · once every 2 turns</div><div><b>🦘 Jump</b><br>Dodges Kick and counter-attacks for 15</div><div><b>⚡ Special</b><br>35 dmg, unstoppable · answer a quiz to cast it · recharge 3 turns</div></div><div class='hw' style='font-size:18px;margin-top:14px'><span>👊 + 🛡️ → <b style='color:#5cf'>BLOCKED</b></span><span>🦶 + 🦘 → <b style='color:var(--ok)'>DODGE + counter!</b></span><span>⚡ → <b style='color:#ffe14d'>UNSTOPPABLE</b></span></div>`],
-['5 · HOW TO WIN',()=>`<div class='win' style='width:190px;margin:22px auto 6px'><div class='crown'>👑</div>${mascot(COL[0],MA)}</div><p>Reduce the other robot's HP to <b>0</b> for a <b>K.O.</b>!<br>If nobody is down after <b>15 rounds</b>, the robot with more HP wins. 🏆</p>`]];
-function startGame(){names=['Team Cyan','Team Orange'];mode='alt';newGame();board();}
+['4 · THE 5 MOVES',()=>`<div class='bg5'><div class='bc'><span>👊</span><b>PUNCH</b><small>Quick hit</small><em>−12 HP</em></div><div class='bc'><span>🦶</span><b>KICK</b><small>Strong hit</small><em>−18 HP</em></div><div class='bc'><span>🛡️</span><b>GUARD</b><small>Stops a Punch</small><em class='n'>no damage</em></div><div class='bc'><span>🦘</span><b>JUMP</b><small>Dodges a Kick</small><em class='n'>counter −15</em></div><div class='bc'><span>⚡</span><b>SPECIAL</b><small>Huge hit! Answer a quiz first</small><em class='y'>−35 HP</em></div></div><p class='mut' style='margin-top:14px'>Both teams pick <b>in secret</b>, then the moves are revealed together!</p>`],
+['5 · WHO BEATS WHO?',()=>{const mb=(c,v,a)=>`<div class='mb'><span class='bub'>${a}</span>${mascot(c,v)}</div>`,row=(a,b,cl,tx)=>`<div class='mu'>${mb(COL[0],MA,a)}<b class='x'>VS</b>${mb(COL[1],MB,b)}<div class='out ${cl}'>${tx}</div></div>`;
+return `<div class='mg'>${row('👊','🛡️','b','🛡️ <b>BLOCKED!</b><br>Punch does nothing.')}${row('🦶','🦘','g','🦘 <b>DODGED!</b><br>The jumper counter-attacks (−15).')}${row('🦶','🛡️','r','<b>Guard can’t stop a Kick.</b><br>Guard-er takes −18.')}${row('👊','🦘','r','<b>Jump can’t dodge a Punch.</b><br>Jumper takes −12.')}${row('👊','🦶','r','<b>Both get hit!</b><br>Punch −12 · Kick −18')}${row('⚡','🛡️','y','⚡ <b>Nothing stops Special!</b><br>−35 (if the quiz is correct)')}</div>`;}],
+['6 · COOLDOWN & SPECIAL',()=>`<p>Some moves can’t be spammed! 🔒</p><div class='cd'><small>🦶 Kick<br>🛡️ Guard</small><i class='u'>🦶</i><i class='l'>🔒</i><i class='rd'>✅</i></div><div class='mut'>Use it → wait 1 turn → ready again</div><div class='cd'><small>⚡ Special</small><i class='u'>⚡</i><i class='l'>🔒</i><i class='l'>🔒</i><i class='l'>🔒</i><i class='rd'>✅</i></div><div class='mut'>Use it → wait 3 turns → ready again</div><div class='hw' style='margin-top:14px'><div class='card' style='border-color:var(--ok)'>❓ ➜ ✅<br><b>Quiz correct</b><br><small class='mut'>Special hits!</small></div><div class='card' style='border-color:var(--bad)'>❓ ➜ ❌<br><b>Wrong / time’s up</b><br><small class='mut'>Special fails 💨</small></div></div><p class='mut'>Special is ready from turn 1. Locked moves turn gray on your phone.</p>`],
+['7 · HOW TO WIN',()=>`<div class='win' style='width:190px;margin:22px auto 6px'><div class='crown'>👑</div>${mascot(COL[0],MA)}</div><p>Reduce the other robot's HP to <b>0</b> for a <b>K.O.</b>!<br>If nobody is down after <b>15 rounds</b>, the robot with more HP wins. 🏆</p>`]];
+const BG=[document.getElementById('bgm'),document.getElementById('bgm2')],VOL=[.35,.4],fadeIv=[0,0];let muted=false,want=-1;
+function bgmOn(i=0){want=i;clearInterval(fadeIv[i]);BG[i].volume=VOL[i];if(!muted)BG[i].play().catch(()=>{});}
+function bgmOff(i=0){if(want===i)want=-1;clearInterval(fadeIv[i]);fadeIv[i]=setInterval(()=>{const a=BG[i];if(a.volume>.04)a.volume=Math.max(0,a.volume-.04);else{clearInterval(fadeIv[i]);a.pause();a.currentTime=0;}},120);}
+function bgmTog(){muted=!muted;document.getElementById('mu').textContent=muted?'🔇':'🔊';if(muted)BG.forEach(a=>a.pause());else if(want>=0){BG[want].volume=VOL[want];BG[want].play().catch(()=>{});}}
+function startGame(){bgmOn();names=['Team Cyan','Team Orange'];mode='alt';newGame();board();}
 function howto(n){const[tt,fn]=HW[n],last=n===HW.length-1;
 app.innerHTML=`<div class='how'><h1 class='center'>${tt}</h1><div class='card center' style='min-height:340px'>${fn()}</div><div class='hw' style='margin-top:12px'>${n?`<button class='pk' id='hp' style='padding:10px 18px'>◀ Back</button>`:`<button class='pk' id='hm' style='padding:10px 18px'>☰ Menu</button>`}<span class='mut'>${HW.map((_,i)=>i===n?'●':'○').join(' ')}</span>${last?`<button class='btn' id='hs'>START ▶</button>`:`<button class='btn' id='hn'>Next ▶</button>`}</div></div>`;
 const g=id=>document.getElementById(id);
 if(g('hp'))g('hp').onclick=()=>howto(n-1);if(g('hm'))g('hm').onclick=setup;if(g('hn'))g('hn').onclick=()=>howto(n+1);if(g('hs'))g('hs').onclick=startGame;}
-function setup(){app.innerHTML=`<div class='center' style='padding-top:3vh'><h1 class='logo'>🤖 ROBOT ASSEMBLY LAB</h1><p class='mut'>Science &amp; Technology English Challenge</p><div class='hw' style='margin:14px 0;flex-wrap:nowrap'><div class='bobs' style='width:min(36vw,230px)'>${mascot(COL[0],MA)}</div><div style='font-size:42px'>⚔️</div><div class='bobs' style='width:min(36vw,230px)'>${mascot(COL[1],MB)}</div></div><p><button class='btn' id='go' style='font-size:22px;padding:16px 44px'>▶ START</button></p><p><button class='pk' id='hw' style='padding:10px 22px;font-size:15px'>❓ HOW TO PLAY</button></p></div>`;
+function setup(){
+const fl=Array.from({length:18},(_,i)=>`<i class='fl' style='left:${Math.random()*100}%;font-size:${18+Math.random()*24}px;animation-duration:${8+Math.random()*10}s;animation-delay:${-Math.random()*14}s'>${['⚙️','🔩','🔋','💡','🛰️','🧪','💾','🔧'][i%8]}</i>`).join('');
+app.innerHTML=`<div class='menu'><div class='gridf'></div>${fl}<div class='mc'><h1 class='gl' data-t='ROBOT'>ROBOT</h1><h1 class='gl gl2' data-t='ASSEMBLY LAB'>ASSEMBLY LAB</h1><div class='arenam'><div class='mr mL'>${mascot(COL[0],MA)}</div><div class='vsx'>VS</div><div class='mr mR'>${mascot(COL[1],MB)}</div></div><div class='steps'><span>🔧 BUILD</span><b>➜</b><span>❓ ANSWER</span><b>➜</b><span>💥 BATTLE</span></div><button class='go' id='go'>▶ START</button><br><button class='hwb' id='hw'>❓ HOW TO PLAY</button></div></div>`;
 $('go').onclick=startGame;$('hw').onclick=()=>howto(0);}
 function robot(t,r,ev){const c=COL[t],R=G[t][r];let h=`<svg viewBox="0 0 200 270" data-t="${t}" data-r="${r}"><ellipse cx="100" cy="262" rx="70" ry="7" fill="${c}" opacity=".2"/>`;
 ['legL','legR','body','armL','armR','head'].forEach(s=>{const v=R[s],e=ev&&ev.t===t&&ev.r===r&&ev.s===s,[x,y,w,hh]=BB[s],act=t===cur&&!busy;
@@ -239,13 +292,13 @@ o.querySelectorAll('.opt').forEach((e,i)=>{if(opts[i].ok)e.classList.add('ok');}
 o.querySelector('#rs').innerHTML=ok?`<div class="res" style="color:var(--ok)">✅ Correct! Assembling part…</div>`:`<div class="res" style="color:var(--bad)">💥 ${i<0?'Time’s up!':'Wrong!'} The part will explode…</div>`;
 setTimeout(()=>{o.remove();G[t][r][s]={v,ok};snd(ok);board({t,r,s});const nx=(mode==='seq'&&Object.keys(G[t][0]).length<6)?t:1-t;setTimeout(()=>{if(SL.length*2===G.flat().reduce((a,R)=>a+Object.keys(R).length,0))return;cur=nx;busy=false;board();},ok?1800:2400);
 if(SL.length*2===G.flat().reduce((a,R)=>a+Object.keys(R).length,0))setTimeout(end,2600);},1500);}}
-function end(){const a=sc(0),b=sc(1),w=a===b?'It’s a tie!':`🏆 ${names[a>b?0:1]} wins!`;
+function end(){bgmOff();const a=sc(0),b=sc(1),w=a===b?'It’s a tie!':`🏆 ${names[a>b?0:1]} wins!`;
 modal(`<div class="center"><h1>BUILD COMPLETE</h1><div class="res">Time to fight! ⚔️</div><p class="mut">Each cardboard part = −8 starting HP</p><p>${names[0]}: <b style="color:${COL[0]}">${a}</b> /6 &nbsp;·&nbsp; ${names[1]}: <b style="color:${COL[1]}">${b}</b> /6</p><button class="btn" id="again">⚔️ START BATTLE</button></div>`).querySelector('#again').onclick=lobby;}
 const AC5={p:['👊','Punch'],k:['🦶','Kick'],g:['🛡️','High Guard'],j:['🦘','Jump'],s:['⚡','Special']};
 const DS={p:'12 dmg · High Guard blocks it',k:'18 dmg · Jump dodges it · every 2 turns',g:'Blocks Punch · every 2 turns',j:'Dodges Kick + counter 15',s:'35 dmg · quiz! · recharge 3 turns'};
 const PT=[[-80,-60],[80,-60],[-90,10],[90,10],[-35,-95],[35,-95],[0,-105]].map(([x,y])=>`<i class='pt' style='--x:${x}px;--y:${y}px'>✦</i>`).join('');
 let B;
-function battle(){document.querySelectorAll('.ov').forEach(e=>e.remove());busy=true;B={hp:[100-8*(6-sc(0)),100-8*(6-sc(1))],cd:[{g:0,k:0,s:0},{g:0,k:0,s:0}],rd:1,pk:[null,null],ch:0,an:['',''],dm:[0,0],em:['',''],msg:'',lock:false,ph:!HOT};bs();sendPicks();}
+function battle(){bgmOn(1);document.querySelectorAll('.ov').forEach(e=>e.remove());busy=true;B={hp:[100-8*(6-sc(0)),100-8*(6-sc(1))],cd:[{g:0,k:0,s:0},{g:0,k:0,s:0}],rd:1,pk:[null,null],ch:0,an:['',''],dm:[0,0],em:['',''],msg:'',lock:false,ph:!HOT};bs();sendPicks();}
 function bs(){const t=B.ch,L=B.lock;
 const hp=i=>`<div class='score' style='color:${COL[i]};border-color:${COL[i]}'>${names[i]}<div class='hp'><i style='width:${B.hp[i]}%;background:${COL[i]}'></i></div><b style='font-size:18px'>${B.hp[i]} HP</b></div>`;
 const fig=i=>`<div class='fig f${i} ${B.an[i]}'>${B.dm[i]?`<b class='dmg'>-${B.dm[i]}</b>`:''}${B.fx&&B.fx[i]&&B.dm[i]?PT:''}${B.fx&&B.fx[i]?`<span class='fx' style='color:${B.fx[i][1]}'>${B.fx[i][0]}</span>`:''}${B.em[i]?`<span class='emo'>${B.em[i]}</span>`:''}${robot(i,0,null)}</div>`;
@@ -281,7 +334,7 @@ go(0);}
 function fanfare(){try{AC=AC||new AudioContext();const t=AC.currentTime;[523,659,784,1047,784,1047,1319].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.type='square';o.frequency.value=f;g.gain.setValueAtTime(.12,t+i*.18);g.gain.exponentialRampToValueAtTime(.001,t+i*.18+.3);o.connect(g);g.connect(AC.destination);o.start(t+i*.18);o.stop(t+i*.18+.32);});}catch(e){}}
 function bend(){const[a,b]=B.hp,dr=a===b,w=a>b?0:1;
 if(B.ph)[0,1].forEach(t=>tx(t,{k:'msg',text:dr?'🤝 Draw!':t===w?'🎉🏆 YOU WIN! 🏆🎉':'Good game! 💪'}));
-fanfare();
+bgmOff(1);fanfare();
 const cf=Array.from({length:70},()=>`<i class='cf' style='left:${Math.random()*100}%;background:hsl(${Math.random()*360},90%,60%);width:${6+Math.random()*8}px;height:${10+Math.random()*12}px;animation-duration:${2.5+Math.random()*3}s;animation-delay:${Math.random()*3}s'></i>`).join('');
 const em=Array.from({length:14},(_,i)=>`<b class='ro' style='left:${3+i*7}%;animation-delay:${i*.35}s'>${['🎉','🎊','✨','🏆','🎈'][i%5]}</b>`).join('');
 const fg=t=>`<div class='win ${dr?'sm':''}'>${dr?'':`<div class='crown'>👑</div>`}${robot(t,0,null)}</div>`;
