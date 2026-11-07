@@ -204,7 +204,9 @@ body{padding-bottom:44px}.np{position:fixed;left:8px;right:8px;bottom:calc(6px +
 <div class="wrap" id="app"></div>
 <audio id="bgm" src="music.mp3" loop preload="auto"></audio>
 <audio id="bgm2" src="battle.mp3" loop preload="auto"></audio>
-<div class="np"><span>♪ Music by Toby Fox: “TV WORLD” (DELTARUNE Chapters 3 &amp; 4 Soundtrack) · “MEGALOVANIA” (UNDERTALE) · © Toby Fox · used for non-commercial educational purposes</span><button id="mu" onclick="bgmTog()">🔊</button></div>
+<audio id="bgm3" src="menu.mp3" loop preload="auto"></audio>
+<audio id="bgm4" src="victory.mp3" loop preload="auto"></audio>
+<div class="np"><span>♪ Music by Toby Fox: “Big City Board”, “TV WORLD” &amp; “Hall of Fame” (DELTARUNE Chapters 3 &amp; 4 Soundtrack) · “MEGALOVANIA” (UNDERTALE) · © Toby Fox · used for non-commercial educational purposes</span><button id="mu" onclick="bgmTog()">🔊</button></div>
 <script>
 // ====== QUESTION BANK (TSH article): first answer is the CORRECT one (options are shuffled in game) ======
 const QS=[
@@ -290,16 +292,17 @@ const HW=[
 ['3 · BATTLE: USE YOUR PHONE',()=>`<div class='hw' style='gap:24px'><div class='phone'><div class='pb'><span>👊</span>Punch</div><div class='pb'><span>🦶</span>Kick</div><div class='pb'><span>🛡️</span>Guard</div><div class='pb'><span>🦘</span>Jump</div><div class='pb s'><span>⚡</span>Special</div></div><div style='text-align:left;font-size:clamp(16px,2.4vw,22px);line-height:2'>1️⃣ Scan your team’s QR code 📱<br>2️⃣ Pick a move <b>in secret</b> 🤫<br>3️⃣ Both moves show at the <b>same time</b>! 💥</div></div>`],
 ['4 · WHO BEATS WHO?',()=>`<div class='mg'>${rwx('👊','🛡️','b','🛡️ <b>BLOCKED!</b><br>Punch does nothing.')}${rwx('🦶','🦘','g','🦘 <b>DODGED!</b><br>And hits back!')}${rwx('🦶','🛡️','r','<b>Guard can’t stop a Kick.</b><br>Ouch!')}${rwx('⚡','🛡️','y','⚡ <b>Special can’t be stopped!</b><br>Answer a quiz first.')}</div><div class='hw' style='margin-top:12px;font-size:clamp(14px,2vw,18px)'><span>🦶 🛡️ need a short rest 🔒</span><span>⚡ needs a long rest 🔒🔒🔒</span></div>`],
 ['5 · HOW TO WIN',()=>`<div class='win' style='width:190px;margin:22px auto 6px'><div class='crown'>👑</div>${mascot(COL[0],MA)}</div><p>Bring the other robot’s ❤️ down to <b>0</b> = <b>K.O.!</b><br>After 15 rounds, the robot with more ❤️ wins! 🏆</p>`]];
-const BG=[document.getElementById('bgm'),document.getElementById('bgm2')],VOL=[.35,.4],fadeIv=[0,0];let muted=false,want=-1;
+const BG=[document.getElementById('bgm'),document.getElementById('bgm2'),document.getElementById('bgm3'),document.getElementById('bgm4')],VOL=[.35,.4,.35,.4],fadeIv=[0,0,0,0];let muted=false,want=-1;
 function bgmOn(i=0){want=i;clearInterval(fadeIv[i]);BG[i].volume=VOL[i];if(!muted)BG[i].play().catch(()=>{});}
 function bgmOff(i=0){if(want===i)want=-1;clearInterval(fadeIv[i]);fadeIv[i]=setInterval(()=>{const a=BG[i];if(a.volume>.04)a.volume=Math.max(0,a.volume-.04);else{clearInterval(fadeIv[i]);a.pause();a.currentTime=0;}},120);}
+['pointerdown','keydown'].forEach(ev=>document.addEventListener(ev,()=>{if(want===2&&!muted&&BG[2].paused)BG[2].play().catch(()=>{});}));
 function bgmTog(){muted=!muted;document.getElementById('mu').textContent=muted?'🔇':'🔊';if(muted)BG.forEach(a=>a.pause());else if(want>=0){BG[want].volume=VOL[want];BG[want].play().catch(()=>{});}}
-function startGame(){window.onkeydown=null;bgmOn();names=['Team Cyan','Team Orange'];mode='alt';newGame();board();}
+function startGame(){window.onkeydown=null;bgmOn();bgmOff(2);names=['Team Cyan','Team Orange'];mode='alt';newGame();board();}
 function howto(n){window.onkeydown=e=>{if(e.key==='ArrowRight'&&n<HW.length-1)howto(n+1);else if(e.key==='ArrowLeft'&&n>0)howto(n-1)};const[tt,fn]=HW[n],last=n===HW.length-1;
 app.innerHTML=`<div class='how'><h1 class='center'>${tt}</h1><div class='card center' style='min-height:340px'>${fn()}</div><div class='hw' style='margin-top:12px'>${n?`<button class='pk' id='hp' style='padding:10px 18px'>◀ Back</button>`:`<button class='pk' id='hm' style='padding:10px 18px'>☰ Menu</button>`}<span class='mut'>${HW.map((_,i)=>i===n?'●':'○').join(' ')}</span>${last?`<button class='btn' id='hs'>START ▶</button>`:`<button class='btn' id='hn'>Next ▶</button>`}</div></div>`;
 const g=id=>document.getElementById(id);
 if(g('hp'))g('hp').onclick=()=>howto(n-1);if(g('hm'))g('hm').onclick=setup;if(g('hn'))g('hn').onclick=()=>howto(n+1);if(g('hs'))g('hs').onclick=startGame;}
-function setup(){window.onkeydown=null;
+function setup(){window.onkeydown=null;bgmOn(2);
 const fl=Array.from({length:18},(_,i)=>`<i class='fl' style='left:${Math.random()*100}%;font-size:${18+Math.random()*24}px;animation-duration:${8+Math.random()*10}s;animation-delay:${-Math.random()*14}s'>${['⚙️','🔩','🔋','💡','🛰️','🧪','💾','🔧'][i%8]}</i>`).join('');
 app.innerHTML=`<div class='menu'><div class='gridf'></div>${fl}<div class='mc'><h1 class='gl' data-t='ROBOT'>ROBOT</h1><h1 class='gl gl2' data-t='ASSEMBLY LAB'>ASSEMBLY LAB</h1><div class='arenam'><div class='mr mL'>${mascot(COL[0],MA)}</div><div class='vsx'>VS</div><div class='mr mR'>${mascot(COL[1],MB)}</div></div><div class='steps'><span>🔧 BUILD</span><b>➜</b><span>❓ ANSWER</span><b>➜</b><span>💥 BATTLE</span></div><button class='go' id='go'>▶ START</button><br><button class='hwb' id='hw'>❓ HOW TO PLAY</button></div></div>`;
 $('go').onclick=startGame;$('hw').onclick=()=>howto(0);}
@@ -381,14 +384,14 @@ go(0);}
 function fanfare(){try{AC=AC||new AudioContext();const t=AC.currentTime;[523,659,784,1047,784,1047,1319].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.type='square';o.frequency.value=f;g.gain.setValueAtTime(.12,t+i*.18);g.gain.exponentialRampToValueAtTime(.001,t+i*.18+.3);o.connect(g);g.connect(AC.destination);o.start(t+i*.18);o.stop(t+i*.18+.32);});}catch(e){}}
 function bend(){const[a,b]=B.hp,dr=a===b,w=a>b?0:1;
 if(B.ph)[0,1].forEach(t=>tx(t,{k:'msg',text:dr?'🤝 Draw!':t===w?'🎉🏆 YOU WIN! 🏆🎉':'Good game! 💪'}));
-bgmOff(1);fanfare();
+bgmOff(1);fanfare();setTimeout(()=>{if(B)bgmOn(3)},1300);
 const cf=Array.from({length:70},()=>`<i class='cf' style='left:${Math.random()*100}%;background:hsl(${Math.random()*360},90%,60%);width:${6+Math.random()*8}px;height:${10+Math.random()*12}px;animation-duration:${2.5+Math.random()*3}s;animation-delay:${Math.random()*3}s'></i>`).join('');
 const em=Array.from({length:14},(_,i)=>`<b class='ro' style='left:${3+i*7}%;animation-delay:${i*.35}s'>${['🎉','🎊','✨','🏆','🎈'][i%5]}</b>`).join('');
 const fg=t=>`<div class='win ${dr?'sm':''}'>${dr?'':`<div class='crown'>👑</div>`}${robot(t,0,null)}</div>`;
 const o=document.createElement('div');o.className='ov win-ov';
 o.innerHTML=`${cf}${em}<div class='center' style='position:relative;z-index:2;width:100%'><h1 class='rb'>${dr?'IT’S A DRAW! 🤝':'🏆 '+names[w]+' WINS! 🏆'}</h1><div class='stage'>${dr?fg(0)+fg(1):fg(w)}</div><p class='res'>${names[0]}: ${a} HP · ${names[1]}: ${b} HP</p><button class='btn' id='again'>PLAY AGAIN</button></div>`;
 document.body.appendChild(o);
-o.querySelector('#again').onclick=()=>{document.querySelectorAll('.ov').forEach(e=>e.remove());B=null;HOT=false;hello();setup();};}
+o.querySelector('#again').onclick=()=>{document.querySelectorAll('.ov').forEach(e=>e.remove());bgmOff(3);B=null;HOT=false;hello();setup();};}
 
 let HOT=false,PL=[0,0],ws,lob=0,QZ=null;
 function tx(team,msg){if(ws&&ws.readyState===1)ws.send(JSON.stringify({type:'to',team,msg}));}
