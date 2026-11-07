@@ -158,36 +158,30 @@ body{padding-bottom:44px}.np{position:fixed;left:8px;right:8px;bottom:calc(6px +
 <audio id="bgm2" src="battle.mp3" loop preload="auto"></audio>
 <div class="np"><span>♪ Music by Toby Fox: “TV WORLD” (DELTARUNE Chapters 3 &amp; 4 Soundtrack) · “MEGALOVANIA” (UNDERTALE) · © Toby Fox · used for non-commercial educational purposes</span><button id="mu" onclick="bgmTog()">🔊</button></div>
 <script>
-// ====== QUESTION BANK: first answer is the CORRECT one (options are shuffled in game) ======
+// ====== QUESTION BANK (TSH article): first answer is the CORRECT one (options are shuffled in game) ======
 const QS=[
-["Which word means “a machine that can do tasks automatically”?",["Robot","Battery","Screen","Cable"]],
-["What does “AI” stand for?",["Artificial Intelligence","Automatic Internet","Advanced Install","Applied Input"]],
-["The “brain” of a computer is the ___.",["processor (CPU)","keyboard","speaker","mouse"]],
-["Which of these is a renewable energy source?",["Solar power","Coal","Oil","Natural gas"]],
-["“Download” means to ___.",["copy data from the internet to your device","send a file to a server","delete a program","turn off a computer"]],
-["The opposite of “hardware” is ___.",["software","keyboard","screen","circuit"]],
-["A device that stores electrical energy is a ___.",["battery","sensor","router","printer"]],
-["Which device detects changes such as heat or light?",["sensor","speaker","cable","folder"]],
-["“Virtual reality” lets users ___.",["experience a simulated 3D environment","print 3D objects","repair cables","store passwords"]],
-["A 3D printer makes objects by ___.",["adding material layer by layer","cutting paper","recording sound","scanning text"]],
-["Wi-Fi is used to ___.",["connect devices to the internet wirelessly","charge phones","cool computers","clean screens"]],
-["Programmers write ___ to give instructions to computers.",["code","poems","recipes","slogans"]],
-["“Data” means ___.",["facts and information","a type of cable","an electric shock","a screen size"]],
-["To protect your account, you should use a strong ___.",["password","wallpaper","font","keyboard"]],
-["A self-driving car uses ___ to “see” the road.",["cameras and sensors","wooden wheels","paper maps only","horns"]],
-["“Cloud storage” means saving files ___.",["on remote servers via the internet","inside the CPU","on paper","in a USB cable"]],
-["Which one is NOT a programming language?",["Chrome","Python","Java","C++"]],
-["“Cybersecurity” is about ___.",["protecting computers and data from attacks","building bridges","designing clothes","cooking food"]],
-["A “drone” is ___.",["an unmanned flying vehicle","an underwater cable","a software bug","a smart watch"]],
-["“Innovation” means ___.",["a new idea or method","an old tool","a broken device","a power cut"]],
-["Smartphone touchscreens respond to ___.",["touch","smell","taste","wind"]],
-["What is the past tense of “invent”?",["invented","invent","inventing","invents"]],
-["“The robot ___ by engineers last year.”",["was built","built","builds","is building"]],
-["A search engine is used for ___.",["finding information online","printing photos","charging devices","recording voice"]],
-["“Artificial” means ___.",["made by people, not natural","very old","extremely fast","free of charge"]],
-["A “bug” in software is ___.",["an error in the code","a small insect robot","a type of battery","a fast connection"]],
-["Which technology helps us talk face-to-face over the internet?",["Video call","Fax","Telegram wire","Radio tower"]],
-["“Wearable technology” includes ___.",["smart watches","wooden chairs","paper books","glass windows"]]
+["Which institution developed the TSH system described in the document?",["The University of Washington", "Stanford University", "The University of Cambridge", "The Massachusetts Institute of Technology"]],
+["Which of the following is an application of audio signal processing?",["Noise reduction in phone calls", "Satellite image classification", "Facial recognition", "Digital photograph restoration"]],
+["What limitation of conventional noise-canceling headphones does the document emphasize?",["They cannot reliably isolate a user-selected speaker.", "They cannot play recorded music.", "They require a quiet environment to function.", "They cannot detect environmental sounds."]],
+["Why is selective listening challenging for machines?",["Overlapping voices and background sounds make separation difficult.", "Human voices always have identical vocal characteristics.", "Speech can only be processed after a conversation ends.", "Microphones cannot capture multiple voices simultaneously."]],
+["What does target speaker extraction aim to do?",["Separate a selected speaker's speech from competing sounds", "Identify the topic of every conversation nearby", "Convert a speaker's voice into a musical instrument", "Increase the volume of all surrounding voices equally"]],
+["How does a user begin selecting a speaker with TSH?",["By facing the speaker and pressing a button", "By entering the speaker's name into an application", "By asking the speaker to wear a microphone", "By choosing the speaker from a saved contact list"]],
+["During enrollment, what should happen to the target speaker's voice?",["It should reach both microphones simultaneously.", "It should reach only the left microphone.", "It should be louder than every other possible sound.", "It should be recorded in a completely silent room."]],
+["Which component learns the selected speaker's vocal patterns?",["Machine learning software on an on-board embedded computer", "A remote human operator", "A camera attached to the headphones", "A speech database manually searched by the wearer"]],
+["Why can the system's ability to focus on the target voice improve as the speaker continues talking?",["Additional speech provides more training data.", "Background noise automatically disappears over time.", "The microphones move closer to the speaker.", "The speaker gradually changes their vocal patterns."]],
+["How many participants tested the system in the reported study?",["21", "12", "16", "42"]],
+["What did participants report about the enrolled speaker's voice?",["Its clarity was rated nearly twice as high as unfiltered audio on average.", "Its clarity was identical to that of unfiltered audio.", "Its volume was exactly twice that of every background sound.", "Its words were understood with complete accuracy in every test."]],
+["Where were the research findings presented?",["At the ACM CHI Conference in Honolulu", "At a medical conference in London", "At a robotics exhibition in Tokyo", "At a consumer electronics event in Berlin"]],
+["According to the document, what was the system's commercial status at the time of reporting?",["It was a proof of concept and was not commercially available.", "It was included in all major headphone brands.", "It was available exclusively to hospital patients.", "It had been withdrawn after commercial testing."]],
+["Which situation is specifically identified as a barrier to successful enrollment?",["Another loud voice comes from the same direction as the target voice.", "The speaker continues talking after enrollment.", "The wearer moves after selecting the speaker.", "The target speaker has never used the system before."]],
+["What can users do if they are dissatisfied with the sound quality?",["Enroll the target speaker again", "Select every nearby speaker simultaneously", "Remove one microphone from the headphones", "Ask the system to stop learning vocal patterns"]],
+["Why may the current system have limited usefulness in group discussions?",["It can isolate only one selected speaker at a time.", "It cannot process speech in real time.", "It requires every participant to wear headphones.", "It works only when participants remain silent."]],
+["How does TSH differ from the team's earlier semantic hearing research?",["TSH selects an individual speaker, while semantic hearing selects sound categories.", "TSH selects sound categories, while semantic hearing selects individual speakers.", "TSH processes images, while semantic hearing processes written text.", "TSH removes all voices, while semantic hearing translates them."]],
+["Why is the availability of the system's code considered a strength?",["It allows other researchers to build on the work.", "It guarantees that the device will be inexpensive.", "It proves that the system works equally well for all users.", "It eliminates the need for further evaluation."]],
+["Why does the document describe TSH as user-centered?",["It gives wearers control over whom they want to hear.", "It automatically chooses the loudest nearby speaker.", "It prevents wearers from changing their listening preferences.", "It requires speakers to control the wearer's headphones."]],
+["Which additional measure would best address the study's reliance on subjective clarity ratings?",["The percentage of spoken words participants correctly identify", "Participants' preferred headphone colors", "The number of times participants charge the device", "Participants' familiarity with the headphone brand"]],
+["Which ethical concern is raised in the document?",["Privacy and consent when processing another person's voice", "Ownership of the cafe where the system is used", "Copyright restrictions on the headphones' color", "Permission to manufacture ordinary headphone cables"]],
+["Which statement best summarizes the document's overall assessment?",["TSH has considerable potential but needs further validation and development.", "TSH has already demonstrated reliable performance in every everyday setting.", "TSH offers no meaningful benefit over conventional noise cancellation.", "TSH should replace existing hearing aids without additional testing."]]
 ];
 const SL=['head','body','armL','armR','legL','legR'];
 const LB={head:'Head',body:'Body',armL:'Left arm',armR:'Right arm',legL:'Left leg',legR:'Right leg'};
