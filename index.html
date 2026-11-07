@@ -52,7 +52,7 @@ input{font-family:inherit;background:#0a1226;border:1px solid var(--line);color:
 .opt:hover{border-color:var(--a)}
 .opt.ok{background:#0d4a2d;border-color:var(--ok)}.opt.no{background:#5a1526;border-color:var(--bad)}
 .res{font-size:22px;font-weight:800;margin:8px 0}
-.mut{color:var(--mut);font-size:13px}.bar{height:8px;background:#0a1226;border-radius:6px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;width:100%;background:var(--ok);transition:width 1s linear,background .3s}.hp{height:10px;background:#0a1226;border-radius:6px;overflow:hidden;margin:4px 0}.hp i{display:block;height:100%;transition:width .8s}.arena{display:flex;justify-content:space-around;align-items:flex-end;margin:6px 0 10px}.vs{font-size:28px;font-weight:800;color:var(--mut);align-self:center}.fig{position:relative;width:40%;max-width:250px;transition:transform .25s}.fig svg{width:100%;height:auto;animation:bob 2.2s ease-in-out infinite}
+.mut{color:var(--mut);font-size:13px}.bar{height:8px;background:#0a1226;border-radius:6px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;width:100%;background:var(--ok);transition:width 1s linear,background .3s}.hp{height:10px;background:#0a1226;border-radius:6px;overflow:hidden;margin:4px 0}.hp i{display:block;height:100%;transition:width .8s}.arena{display:flex;justify-content:space-around;align-items:flex-end;margin:6px 0 10px}.vs{font-size:28px;font-weight:800;color:var(--mut);align-self:center}.fig{position:relative;width:clamp(130px,min(26vw,30vh),380px);transition:transform .25s}.fig svg{width:100%;height:auto;animation:bob 2.2s ease-in-out infinite}
 .arena{position:relative}
 .f0.pn{animation:pn0 1.6s .9s both}.f1.pn{animation:pn1 1.6s .9s both}
 @keyframes pn0{0%,100%{transform:none}30%{transform:translateX(-14%) scale(.92)}50%,65%{transform:translateX(70%) scale(1.25)}}
@@ -139,6 +139,44 @@ body{padding-bottom:44px}.np{position:fixed;left:8px;right:8px;bottom:calc(6px +
 @keyframes gbg{to{background-position:300% 0}}@keyframes gpl{50%{transform:scale(1.07)}}@keyframes shn{to{left:140%}}
 .go:hover{filter:brightness(1.15)}
 .hwb{margin-top:16px;font-family:inherit;background:transparent;border:2px solid #ffe14d;color:#ffe14d;border-radius:12px;padding:10px 26px;font-size:15px;cursor:pointer;text-shadow:0 0 8px #ffe14d}.hwb:hover{background:#ffe14d22}
+/* ===== ARENA ===== */
+.bt .hud{align-items:center;gap:clamp(6px,1.4vw,18px);margin-bottom:6px}
+.plate{flex:1;background:linear-gradient(#0f1830,#0a1226);border:3px solid var(--c);border-radius:14px;padding:8px 12px;box-shadow:0 0 18px var(--c)}
+.pn{font-weight:800;font-size:clamp(16px,2.6vw,30px);color:var(--c);text-shadow:0 0 10px var(--c)}
+.hpb{position:relative;height:clamp(22px,3.4vw,38px);background:#05080f;border-radius:8px;overflow:hidden;border:2px solid #000;margin-top:4px}
+.hpb u,.hpb i{position:absolute;left:0;top:0;height:100%;width:var(--b)}
+.hpb u{background:#fff;animation:trail 1.3s calc(var(--t) + .25s) both}.hpb i{animation:hpd .45s var(--t) both}
+.hpb span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:clamp(12px,1.9vw,22px);font-weight:800;color:#fff;text-shadow:1px 1px 0 #000,0 0 6px #000;z-index:2}
+@keyframes hpd{from{width:var(--a)}to{width:var(--b)}}@keyframes trail{from{width:var(--a)}to{width:var(--b)}}
+.rdb{flex:none;width:clamp(70px,10vw,120px);text-align:center;font-size:clamp(10px,1.4vw,15px);color:var(--mut);letter-spacing:2px}
+.rdb b{display:block;font-size:clamp(30px,5vw,60px);color:#ffe14d;text-shadow:0 0 14px #ffe14d;line-height:1}.rdb small{font-size:.9em}
+.arena{position:relative;min-height:clamp(280px,50vh,580px);border-radius:18px;overflow:hidden;margin:8px 0 10px;display:flex;justify-content:space-around;align-items:flex-end;padding:0 3% 2.5%;background:linear-gradient(#0b0f2a,#1a1050 55%,#070b17);border:3px solid #3a4f86;box-shadow:inset 0 0 70px #000,0 0 26px #6a3cff66}
+.bk{position:absolute;inset:0;z-index:0}
+.beam{position:absolute;top:-25%;width:32%;height:150%;background:linear-gradient(rgba(255,255,255,.24),transparent 70%);clip-path:polygon(45% 0,55% 0,100% 100%,0 100%);transform-origin:50% 0;animation:swing 4s ease-in-out infinite alternate}
+.b1{left:8%}.b2{right:8%;animation-delay:-2s}
+@keyframes swing{from{transform:rotate(-20deg)}to{transform:rotate(20deg)}}
+.cr{position:absolute;top:5%;left:0;right:0;display:flex;justify-content:space-around;font-size:clamp(20px,3.4vw,46px);opacity:.75}
+.cr i{font-style:normal;animation:cb 1.2s ease-in-out infinite}
+@keyframes cb{50%{transform:translateY(-10px)}}
+.arena.big .cr i{animation:cheer .5s var(--t) 3}
+@keyframes cheer{50%{transform:translateY(-38px) scale(1.35)}}
+.flr{position:absolute;left:-30%;right:-30%;bottom:0;height:48%;background-image:linear-gradient(#22e6ff55 2px,transparent 2px),linear-gradient(90deg,#22e6ff55 2px,transparent 2px),radial-gradient(ellipse at 50% 0,#6a3cff66,transparent 70%);background-size:70px 70px,70px 70px,100% 100%;transform:perspective(380px) rotateX(64deg);transform-origin:bottom;animation:fm 3s linear infinite;z-index:0}
+@keyframes fm{to{background-position:0 70px,0 70px,0 0}}
+.arena .fig{z-index:2}.arena .emo{top:0;font-size:clamp(40px,6vw,76px);z-index:4}
+.f0{--tc:#22e6ff}.f1{--tc:#ff8a3d}
+.fig::before{content:'';position:absolute;left:0;right:0;bottom:0;height:14%;border-radius:50%;background:radial-gradient(var(--tc),transparent 70%);opacity:.85}
+.arena .vs{position:absolute;left:50%;top:20%;transform:translateX(-50%);font-size:clamp(44px,9vw,130px);color:#ffe14d;opacity:.22;text-shadow:0 0 30px #ff4d6d;z-index:1;animation:none}
+.fig.ent.f0{animation:in0 1s both}.fig.ent.f1{animation:in1 1s both}
+@keyframes in0{from{transform:translateX(-170%) rotate(-20deg)}}@keyframes in1{from{transform:translateX(170%) rotate(20deg)}}
+.arena.big::before{content:'';position:absolute;inset:0;background:repeating-conic-gradient(from 0deg at 50% 62%,#ffffff44 0 3deg,transparent 3deg 9deg);opacity:0;pointer-events:none;z-index:3;mix-blend-mode:screen;animation:lns .7s var(--t) both}
+@keyframes lns{0%{opacity:0;transform:scale(.6)}20%{opacity:.9}100%{opacity:0;transform:scale(1.7)}}
+.ring{position:absolute;left:50%;bottom:4%;width:40px;height:14px;border:5px solid #fff;border-radius:50%;opacity:0;z-index:1;animation:rg 1.1s var(--t) both}
+@keyframes rg{0%{opacity:.9;transform:translateX(-50%) scale(.3)}100%{opacity:0;transform:translateX(-50%) scale(9)}}
+.splash{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:30;pointer-events:none;font-size:clamp(60px,15vw,220px);font-weight:800;color:#fff;text-shadow:0 0 40px var(--c),6px 6px 0 #000;animation:spl .95s both}
+@keyframes spl{0%{transform:scale(3.2);opacity:0}25%{transform:scale(1);opacity:1}75%{transform:scale(1.06);opacity:1}100%{transform:scale(.6);opacity:0}}
+.bt .act{padding:clamp(10px,1.6vw,20px) 6px;font-size:clamp(13px,1.8vw,20px)}.bt .act span{font-size:clamp(34px,5vw,60px)}.bt .act small{font-size:clamp(10px,1.4vw,14px)}
+.bt .res{font-size:clamp(20px,3vw,36px);margin:10px 0}
+.wrap:has(.bt){max-width:1560px}.bt .arena{min-height:clamp(300px,56vh,700px)}
 .panel .pk{border-width:3px;border-radius:14px;padding:10px;font-size:clamp(14px,1.8vw,20px)}.panel #cx{font-size:clamp(14px,1.8vw,20px);padding:10px 26px}
 .panel .mut{font-size:clamp(15px,2vw,24px)}.panel #tm{font-size:clamp(30px,4.4vw,52px)!important}.panel .bar{height:14px}.panel .res{font-size:clamp(22px,3.2vw,38px)}
 .bg5{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}@media(max-width:640px){.bg5{grid-template-columns:repeat(2,1fr)}}
@@ -295,13 +333,17 @@ const AC5={p:['👊','Punch'],k:['🦶','Kick'],g:['🛡️','High Guard'],j:['�
 const DS={p:'12 dmg · High Guard blocks it',k:'18 dmg · Jump dodges it · every 2 turns',g:'Blocks Punch · every 2 turns',j:'Dodges Kick + counter 15',s:'35 dmg · quiz! · recharge 3 turns'};
 const PT=[[-80,-60],[80,-60],[-90,10],[90,10],[-35,-95],[35,-95],[0,-105]].map(([x,y])=>`<i class='pt' style='--x:${x}px;--y:${y}px'>✦</i>`).join('');
 let B;
-function battle(){bgmOn(1);document.querySelectorAll('.ov').forEach(e=>e.remove());busy=true;B={hp:[100-8*(6-sc(0)),100-8*(6-sc(1))],cd:[{g:0,k:0,s:0},{g:0,k:0,s:0}],rd:1,pk:[null,null],ch:0,an:['',''],dm:[0,0],em:['',''],msg:'',lock:false,ph:!HOT};bs();sendPicks();}
-function bs(){const t=B.ch,L=B.lock;
-const hp=i=>`<div class='score' style='color:${COL[i]};border-color:${COL[i]}'>${names[i]}<div class='hp'><i style='width:${B.hp[i]}%;background:${COL[i]}'></i></div><b style='font-size:18px'>${B.hp[i]} HP</b></div>`;
-const fig=i=>`<div class='fig f${i} ${B.an[i]}'>${B.dm[i]?`<b class='dmg'>-${B.dm[i]}</b>`:''}${B.fx&&B.fx[i]&&B.dm[i]?PT:''}${B.fx&&B.fx[i]?`<span class='fx' style='color:${B.fx[i][1]}'>${B.fx[i][0]}</span>`:''}${B.em[i]?`<span class='emo'>${B.em[i]}</span>`:''}${robot(i,0,null)}</div>`;
-const st=i=>B.pk[i]?'✅ locked in':'🤔 thinking…';const panel=B.ph&&!L?`<div class='center res'>📱 ${names[0]}: ${st(0)}<br>📱 ${names[1]}: ${st(1)}</div>`:L?`<div class='center res'>${B.msg}</div>`:`<p class='center'><b style='color:${COL[t]}'>${names[t]}</b> — pick an action<br><span class='mut'>${t?'✅ '+names[0]+' locked in':'(other team: look away 👀)'}</span></p><div class='acts'>${Object.keys(AC5).map(a=>{const c=B.cd[t][a]||0;return `<button class='act' data-a='${a}' ${c?'disabled':''}><span>${AC5[a][0]}</span><b>${AC5[a][1]}</b><small>${c?'🔒 '+c+' turn'+(c>1?'s':''):DS[a]}</small></button>`}).join('')}</div>`;
-app.innerHTML=`<div class='hud'>${hp(0)}${hp(1)}</div><div class='banner'>⚔️ Round ${B.rd}/15</div><div class='arena ${B.big?'big':''} ${B.spl?'spl':''}' style='--t:${B.imp||0}s'>${fig(0)}<div class='vs'>VS</div>${fig(1)}</div>${panel}`;
+function battle(){bgmOn(1);document.querySelectorAll('.ov').forEach(e=>e.remove());busy=true;B={hp:[100-8*(6-sc(0)),100-8*(6-sc(1))],cd:[{g:0,k:0,s:0},{g:0,k:0,s:0}],rd:1,pk:[null,null],ch:0,an:['',''],dm:[0,0],em:['',''],msg:'',lock:false,ph:!HOT,ent:true,prev:null};bs();sendPicks();splash('ROUND 1','#ffe14d');setTimeout(()=>splash('FIGHT!','#ff4d6d'),1100);}
+function bs(){const t=B.ch,L=B.lock,ent=B.ent;B.ent=false;
+const col=h=>h>50?'#3dff9a':h>25?'#ffe14d':'#ff4d6d';
+const hp=i=>{const a=B.prev?B.prev[i]:B.hp[i],b=B.hp[i];return `<div class='plate' style='--c:${COL[i]}'><div class='pn'>${names[i]}</div><div class='hpb' style='--a:${a}%;--b:${b}%'><u></u><i style='background:${col(b)}'></i><span>${b} / 100</span></div></div>`;};
+const fig=i=>`<div class='fig f${i} ${B.an[i]} ${ent?'ent':''}'>${B.dm[i]?`<b class='dmg'>-${B.dm[i]}</b>`:''}${B.fx&&B.fx[i]&&B.dm[i]?PT+`<i class='ring'></i>`:''}${B.fx&&B.fx[i]?`<span class='fx' style='color:${B.fx[i][1]}'>${B.fx[i][0]}</span>`:''}${B.em[i]?`<span class='emo'>${B.em[i]}</span>`:''}${robot(i,0,null)}</div>`;
+const st=i=>B.pk[i]?'✅ locked in':'🤔 thinking…';
+const panel=B.ph&&!L?`<div class='center res'>📱 ${names[0]}: ${st(0)}<br>📱 ${names[1]}: ${st(1)}</div>`:L?`<div class='center res'>${B.msg}</div>`:`<p class='center'><b style='color:${COL[t]}'>${names[t]}</b> — pick an action<br><span class='mut'>${t?'✅ '+names[0]+' locked in':'(other team: look away 👀)'}</span></p><div class='acts'>${Object.keys(AC5).map(a=>{const c=B.cd[t][a]||0;return `<button class='act' data-a='${a}' ${c?'disabled':''}><span>${AC5[a][0]}</span><b>${AC5[a][1]}</b><small>${c?'🔒 '+c+' turn'+(c>1?'s':''):DS[a]}</small></button>`}).join('')}</div>`;
+const crowd=Array.from({length:18},(_,i)=>`<i style='animation-delay:${((i*.17)%1.2).toFixed(2)}s'>${['🤖','👾','🛸','🦾','👽','🧑‍🚀'][i%6]}</i>`).join('');
+app.innerHTML=`<div class='bt' style='--t:${B.imp||0}s'><div class='hud'>${hp(0)}<div class='rdb'>ROUND<b>${B.rd}</b><small>/15</small></div>${hp(1)}</div><div class='arena ${B.big?'big':''} ${B.spl?'spl':''}'><div class='bk'><div class='beam b1'></div><div class='beam b2'></div><div class='cr'>${crowd}</div></div><div class='flr'></div>${fig(0)}<div class='vs'>VS</div>${fig(1)}</div>${panel}</div>`;
 app.querySelectorAll('.act').forEach(b=>b.onclick=()=>bpick(b.dataset.a));}
+function splash(txt,c){const d=document.createElement('div');d.className='splash';d.style.setProperty('--c',c||'#fff');d.textContent=txt;document.body.appendChild(d);setTimeout(()=>d.remove(),1000);}
 function bpick(a){B.pk[B.ch]=a;if(B.ch===0){B.ch=1;bs();}else{B.lock=true;B.msg='⏳ …';bs();bres();}}
 function quizq(t,cb){if(!pool.length)pool=QS.map(q=>q).sort(()=>Math.random()-.5);cur=t;
 const q=pool.pop(),op=q[1].map((x,i)=>({x,ok:i===0})).sort(()=>Math.random()-.5);
@@ -319,14 +361,14 @@ else if(a==='k'){an[i]='atk kk';if(o==='j'){ev.push(`🦘 ${m} dodged the kick!`
 else if(a==='g')an[i]='gd';
 else if(a==='j'){an[i]='jmp';if(o==='k'){d[1-i]+=15;fx[1-i]=['BOING!','#ff6fb5'];ev.push(`🦘 ${n} counter-attacks!`)}}
 else if(a==='s'){if(sp[i]){an[i]='atk sp';d[1-i]+=35;fx[1-i]=['KABOOM!','#ff4d6d'];ev.push(`⚡ ${n}’s SPECIAL lands!`)}else{an[i]='fail';fx[i]=['FIZZLE…','#8aa0c8'];ev.push(`💨 ${n}’s special FAILED!`)}}});
-B.hp=B.hp.map((h,i)=>Math.max(0,h-d[i]));B.dm=d;d.forEach((v,i)=>{if(v)an[i]+=' hurt';if(B.hp[i]<=0)an[i]+=' ko'});B.an=an;B.fx=fx;B.big=d.some(v=>v>=15);B.spl=!!(sp[0]||sp[1]);B.imp=.9+(B.spl?1.56:B.pk.includes('k')?1.0:.8);
+d.forEach((v,i)=>{if(v)ev.push(`💥 ${names[i]} −${v}`)});B.prev=B.hp.slice();B.hp=B.hp.map((h,i)=>Math.max(0,h-d[i]));B.dm=d;d.forEach((v,i)=>{if(v)an[i]+=' hurt';if(B.hp[i]<=0)an[i]+=' ko'});B.an=an;B.fx=fx;B.big=d.some(v=>v>=15);B.spl=!!(sp[0]||sp[1]);B.imp=.9+(B.spl?1.56:B.pk.includes('k')?1.0:.8);
 B.em=B.pk.map((a,i)=>a==='s'&&!sp[i]?'💨':AC5[a][0]);
-B.msg=`<div style='font-size:26px'>${names[0]} ${AC5[x][0]} <span class='mut'>vs</span> ${AC5[y][0]} ${names[1]}</div><div>${ev.join(' · ')||'Nothing happens…'}</div>`;
+B.msg=`<div style='font-size:clamp(22px,3.2vw,40px)'>${names[0]} ${AC5[x][0]} <span class='mut'>vs</span> ${AC5[y][0]} ${names[1]}</div><div>${ev.join(' · ')||'Nothing happens…'}</div>`;
 ['g','k','s'].forEach(k=>[0,1].forEach(i=>{if(B.cd[i][k]>0)B.cd[i][k]--}));
 [0,1].forEach(i=>{const a=B.pk[i];if(a==='g'||a==='k')B.cd[i][a]=1;if(a==='s')B.cd[i].s=3});
 if(B.ph)tx('all',{k:'msg',text:AC5[x][0]+' vs '+AC5[y][0]+' — '+(ev.join(' · ')||'Nothing happens…'),hp:B.hp});
 bs();
-setTimeout(()=>{if(B.hp[0]<=0||B.hp[1]<=0||B.rd>=15)return bend();B.rd++;B.pk=[null,null];B.ch=0;B.an=['',''];B.dm=[0,0];B.em=['',''];B.fx=null;B.big=0;B.spl=0;B.imp=0;B.lock=false;B.msg='';bs();sendPicks();},(B.imp+2.6)*1000);};
+setTimeout(()=>{if(B.hp[0]<=0||B.hp[1]<=0||B.rd>=15)return bend();B.rd++;B.pk=[null,null];B.ch=0;B.an=['',''];B.dm=[0,0];B.em=['',''];B.fx=null;B.big=0;B.spl=0;B.imp=0;B.prev=B.hp.slice();B.lock=false;B.msg='';bs();sendPicks();splash('ROUND '+B.rd,'#ffe14d');},(B.imp+2.6)*1000);};
 go(0);}
 function fanfare(){try{AC=AC||new AudioContext();const t=AC.currentTime;[523,659,784,1047,784,1047,1319].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.type='square';o.frequency.value=f;g.gain.setValueAtTime(.12,t+i*.18);g.gain.exponentialRampToValueAtTime(.001,t+i*.18+.3);o.connect(g);g.connect(AC.destination);o.start(t+i*.18);o.stop(t+i*.18+.32);});}catch(e){}}
 function bend(){const[a,b]=B.hp,dr=a===b,w=a>b?0:1;
