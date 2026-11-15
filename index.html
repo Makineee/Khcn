@@ -202,7 +202,7 @@ body{padding-bottom:44px}.np{position:fixed;left:8px;right:8px;bottom:calc(6px +
 .how p{font-size:clamp(16px,2.4vw,22px)}.how .steps span{font-size:clamp(14px,2.4vw,20px)}.how .card small{font-size:clamp(12px,1.8vw,15px)}
 .phone{width:min(290px,80vw);border:4px solid #8aa0c8;border-radius:28px;padding:14px 10px;background:#070b17;display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:none}
 .pb{background:#0f1830;border:2px solid var(--line);border-radius:12px;padding:8px 4px;font-size:12px;text-align:center}.pb span{font-size:28px;display:block}.pb.s{grid-column:span 2;border-color:#ffe14d}
-.dmg{position:absolute;top:-6px;left:50%;font-size:34px;color:#ff4d6d;z-index:2;animation:up 1.4s both;text-shadow:0 0 8px #000}@keyframes up{from{transform:translate(-50%,0)}to{transform:translate(-50%,-50px);opacity:0}}.emo{position:absolute;top:-30px;left:50%;font-size:44px;z-index:2;animation:pop .6s both}@keyframes pop{from{transform:translateX(-50%) scale(0)}to{transform:translateX(-50%) scale(1)}}.acts{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}@media(max-width:700px){.acts{grid-template-columns:1fr 1fr}}.act{background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:10px 6px;display:flex;flex-direction:column;gap:4px;align-items:center;font-size:13px}.act span{font-size:30px}.act small{color:var(--mut);font-size:10px;text-align:center}.act:hover:not(:disabled){border-color:var(--a)}.act:disabled{opacity:.4;cursor:not-allowed}
+.dmg{position:absolute;top:-6px;left:50%;font-size:34px;color:#ff4d6d;z-index:2;animation:up 1.4s both;text-shadow:0 0 8px #000}@keyframes up{from{transform:translate(-50%,0)}to{transform:translate(-50%,-50px);opacity:0}}.emo{position:absolute;top:-30px;left:50%;font-size:44px;z-index:2;animation:pop .6s both}@keyframes pop{from{transform:translateX(-50%) scale(0)}to{transform:translateX(-50%) scale(1)}}.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}@media(max-width:700px){.acts{grid-template-columns:1fr 1fr}}.act{background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:10px 6px;display:flex;flex-direction:column;gap:4px;align-items:center;font-size:13px}.act span{font-size:30px}.act small{color:var(--mut);font-size:10px;text-align:center}.act:hover:not(:disabled){border-color:var(--a)}.act:disabled{opacity:.4;cursor:not-allowed}
 </style></head><body>
 <div class="wrap" id="app"></div>
 <audio id="bgm" src="music.mp3" loop preload="auto"></audio>
@@ -289,26 +289,32 @@ const mini=(s,v,c)=>{const[x,y,w,h]=BB[s],p=6;return `<svg class='th' viewBox='$
 const bxs=s=>{const[x,y,w,h]=BB[s],p=6;return `<svg class='th' viewBox='${x-p} ${y-p} ${w+2*p} ${h+2*p}'>${box(s)}</svg>`;};
 const bigb=`style='display:flex;align-items:center;justify-content:center;font-size:32px'`;
 const mbx=(c,v,a)=>`<div class='mb'><span class='bub'>${a}</span>${mascot(c,v)}</div>`,rwx=(a,b,cl,tx)=>`<div class='mu'>${mbx(COL[0],MA,a)}<b class='x'>VS</b>${mbx(COL[1],MB,b)}<div class='out ${cl}'>${tx}</div></div>`;
-const HW=[
+const HWB=[
 ['1 · YOUR MISSION',()=>`<div class='hw'><div style='width:150px'>${mascot(COL[0],MA)}</div><div style='font-size:44px'>⚔️</div><div style='width:150px'>${mascot(COL[1],MB)}</div></div><div class='steps'><span>🔧 BUILD a robot</span><b>➜</b><span>⚔️ FIGHT the other team</span><b>➜</b><span>🏆 WIN!</span></div><p>Answer questions to build a strong robot!</p>`],
-['2 · BUILD YOUR ROBOT',()=>`<div class='hw'><div class='card'><span style='font-size:36px'>🤔</span><br><b>Choose a part</b><br><small class='mut'>head · body · arms · legs</small></div><span class='arr'>➜</span><div class='card'><span style='font-size:36px'>❓</span><br><b>Answer the question</b><br><small class='mut'>You have 15 seconds</small></div></div><div class='hw'><div class='card' style='border-color:var(--ok)'>${mini('head',2,COL[0])}<br>✅ <b>Correct!</b><br><small class='mut'>You get the part</small></div><div class='card' style='border-color:var(--bad)'><span style='font-size:30px'>💥 ➜</span>${bxs('head')}<br>❌ <b>Wrong!</b><br><small class='mut'>Boom! A cardboard part</small></div></div><p class='mut'>Cardboard parts = less ❤️ in the battle</p>`],
-['3 · BATTLE: USE YOUR PHONE',()=>`<div class='hw' style='gap:24px'><div class='phone'><div class='pb'><span>👊</span>Punch</div><div class='pb'><span>🦶</span>Kick</div><div class='pb'><span>🛡️</span>Guard</div><div class='pb'><span>🦘</span>Jump</div><div class='pb s'><span>⚡</span>Special</div></div><div style='text-align:left;font-size:clamp(16px,2.4vw,22px);line-height:2'>1️⃣ Scan your team’s QR code 📱<br>2️⃣ Pick a move <b>in secret</b> 🤫<br>3️⃣ Both moves show at the <b>same time</b>! 💥</div></div>`],
-['4 · WHO BEATS WHO?',()=>`<div class='mg'>${rwx('👊','🛡️','b','🛡️ <b>BLOCKED!</b><br>Punch does nothing.')}${rwx('🦶','🦘','g','🦘 <b>DODGED!</b><br>And hits back!')}${rwx('🦶','🛡️','r','<b>Guard can’t stop a Kick.</b><br>Ouch!')}${rwx('⚡','🛡️','y','⚡ <b>Special can’t be stopped!</b><br>Answer a quiz first.')}</div><div class='hw' style='margin-top:12px;font-size:clamp(14px,2vw,18px)'><span>🦶 🛡️ need a short rest 🔒</span><span>⚡ needs a long rest 🔒🔒🔒</span></div>`],
-['5 · HOW TO WIN',()=>`<div class='win' style='width:190px;margin:22px auto 6px'><div class='crown'>👑</div>${mascot(COL[0],MA)}</div><p>Bring the other robot’s ❤️ down to <b>0</b> = <b>K.O.!</b><br>After 15 rounds, the robot with more ❤️ wins! 🏆</p>`]];
+['2 · BUILD YOUR ROBOT',()=>`<div class='hw'><div class='card'><span style='font-size:36px'>🤔</span><br><b>Choose a part</b><br><small class='mut'>head · body · arms · legs</small></div><span class='arr'>➜</span><div class='card'><span style='font-size:36px'>❓</span><br><b>Answer the question</b><br><small class='mut'>You have 15 seconds</small></div></div><div class='hw'><div class='card' style='border-color:var(--ok)'>${mini('head',2,COL[0])}<br>✅ <b>Correct!</b><br><small class='mut'>You get the part</small></div><div class='card' style='border-color:var(--bad)'><span style='font-size:30px'>💥 ➜</span>${bxs('head')}<br>❌ <b>Wrong!</b><br><small class='mut'>Boom! A cardboard part</small></div></div><p class='mut'>Cardboard parts = less ❤️ in the battle</p>`]];
+HWB.cta='START BUILDING ▶';
+const HWF=[
+['1 · BATTLE: USE YOUR PHONE',()=>`<div class='hw' style='gap:24px'><div class='phone'><div class='pb'><span>👊</span>Punch</div><div class='pb'><span>🛡️</span>Guard</div><div class='pb s'><span>⚡</span>Special</div></div><div style='text-align:left;font-size:clamp(16px,2.4vw,22px);line-height:2'>1️⃣ Scan your team’s QR code 📱<br>2️⃣ Pick a move <b>in secret</b> 🤫<br>3️⃣ Both moves show at the <b>same time</b>! 💥</div></div><p class='mut'>❤️ Start with 100 HP, minus 8 for every cardboard part</p>`],
+['2 · THE 3 MOVES',()=>`<div class='bg5' style='grid-template-columns:repeat(3,1fr)'><div class='bc'><span>👊</span><b>PUNCH</b><small>Hit the enemy</small><em>−15 HP</em></div><div class='bc'><span>🛡️</span><b>GUARD</b><small>Blocks a Punch</small><em class='n'>rest 1 turn 🔒</em></div><div class='bc'><span>⚡</span><b>SPECIAL</b><small>Huge hit! Answer a quiz first</small><em class='y'>−35 HP · rest 3 turns 🔒</em></div></div><p class='mut' style='margin-top:14px'>You can’t use Guard or Special again right away!</p>`],
+['3 · WHO BEATS WHO?',()=>`<div class='mg'>${rwx('👊','🛡️','b','🛡️ <b>BLOCKED!</b><br>Punch does nothing.')}${rwx('👊','👊','r','<b>Both get hit!</b><br>−15 each')}${rwx('⚡','🛡️','y','⚡ <b>Special can’t be stopped!</b><br>Answer the quiz correctly.')}${rwx('⚡','👊','y','⚡ <b>Special hits hard!</b><br>Wrong answer = it fails 💨')}</div>`],
+['4 · HOW TO WIN',()=>`<div class='win' style='width:190px;margin:22px auto 6px'><div class='crown'>👑</div>${mascot(COL[0],MA)}</div><p>Bring the other robot’s ❤️ down to <b>0</b> = <b>K.O.!</b><br>After 12 rounds, the robot with more ❤️ wins! 🏆</p>`]];
+HWF.cta='CONNECT PHONES ▶';
 const BG=[document.getElementById('bgm'),document.getElementById('bgm2'),document.getElementById('bgm3'),document.getElementById('bgm4')],VOL=[.35,.4,.35,.4],fadeIv=[0,0,0,0];let muted=false,want=-1;
 function bgmOn(i=0){want=i;clearInterval(fadeIv[i]);BG[i].volume=VOL[i];if(!muted)BG[i].play().catch(()=>{});}
 function bgmOff(i=0){if(want===i)want=-1;clearInterval(fadeIv[i]);fadeIv[i]=setInterval(()=>{const a=BG[i];if(a.volume>.04)a.volume=Math.max(0,a.volume-.04);else{clearInterval(fadeIv[i]);a.pause();a.currentTime=0;}},120);}
 ['pointerdown','keydown'].forEach(ev=>document.addEventListener(ev,()=>{if(want===2&&!muted&&BG[2].paused)BG[2].play().catch(()=>{});}));
 function bgmTog(){muted=!muted;document.getElementById('mu').textContent=muted?'🔇':'🔊';if(muted)BG.forEach(a=>a.pause());else if(want>=0){BG[want].volume=VOL[want];BG[want].play().catch(()=>{});}}
 function startGame(){window.onkeydown=null;bgmOn();bgmOff(2);names=['Team Cyan','Team Orange'];mode='alt';newGame();board();}
-function howto(n){window.onkeydown=e=>{if(e.key==='ArrowRight'&&n<HW.length-1)howto(n+1);else if(e.key==='ArrowLeft'&&n>0)howto(n-1)};const[tt,fn]=HW[n],last=n===HW.length-1;
-app.innerHTML=`<div class='how'><h1 class='center'>${tt}</h1><div class='card center' style='min-height:340px'>${fn()}</div><div class='hw' style='margin-top:12px'>${n?`<button class='pk' id='hp' style='padding:10px 18px'>◀ Back</button>`:`<button class='pk' id='hm' style='padding:10px 18px'>☰ Menu</button>`}<span class='mut'>${HW.map((_,i)=>i===n?'●':'○').join(' ')}</span>${last?`<button class='btn' id='hs'>START ▶</button>`:`<button class='btn' id='hn'>Next ▶</button>`}</div></div>`;
+function howto(n,L,done,back){document.querySelectorAll('.ov').forEach(e=>e.remove());
+window.onkeydown=e=>{if(e.key==='ArrowRight'&&n<L.length-1)howto(n+1,L,done,back);else if(e.key==='ArrowLeft'&&n>0)howto(n-1,L,done,back)};
+const[tt,fn]=L[n],last=n===L.length-1;
+app.innerHTML=`<div class='how'><h1 class='center'>${tt}</h1><div class='card center' style='min-height:340px'>${fn()}</div><div class='hw' style='margin-top:12px'>${n?`<button class='pk' id='hp' style='padding:10px 18px'>◀ Back</button>`:back?`<button class='pk' id='hm' style='padding:10px 18px'>☰ Menu</button>`:`<span style='width:90px'></span>`}<span class='mut'>${L.map((_,i)=>i===n?'●':'○').join(' ')}</span>${last?`<button class='btn' id='hs'>${L.cta}</button>`:`<button class='btn' id='hn'>Next ▶</button>`}</div></div>`;
 const g=id=>document.getElementById(id);
-if(g('hp'))g('hp').onclick=()=>howto(n-1);if(g('hm'))g('hm').onclick=setup;if(g('hn'))g('hn').onclick=()=>howto(n+1);if(g('hs'))g('hs').onclick=startGame;}
+if(g('hp'))g('hp').onclick=()=>howto(n-1,L,done,back);if(g('hm'))g('hm').onclick=back;if(g('hn'))g('hn').onclick=()=>howto(n+1,L,done,back);if(g('hs'))g('hs').onclick=()=>{window.onkeydown=null;done();};}
 function setup(){window.onkeydown=null;bgmOn(2);
 const fl=Array.from({length:18},(_,i)=>`<i class='fl' style='left:${Math.random()*100}%;font-size:${18+Math.random()*24}px;animation-duration:${8+Math.random()*10}s;animation-delay:${-Math.random()*14}s'>${['⚙️','🔩','🔋','💡','🛰️','🧪','💾','🔧'][i%8]}</i>`).join('');
-app.innerHTML=`<div class='menu'><div class='gridf'></div>${fl}<div class='mc'><h1 class='gl' data-t='ROBOT'>ROBOT</h1><h1 class='gl gl2' data-t='ASSEMBLY LAB'>ASSEMBLY LAB</h1><div class='arenam'><div class='mr mL'>${mascot(COL[0],MA)}</div><div class='vsx'>VS</div><div class='mr mR'>${mascot(COL[1],MB)}</div></div><div class='steps'><span>🔧 BUILD</span><b>➜</b><span>❓ ANSWER</span><b>➜</b><span>💥 BATTLE</span></div><button class='go' id='go'>▶ START</button><br><button class='hwb' id='hw'>❓ HOW TO PLAY</button></div></div>`;
-$('go').onclick=startGame;$('hw').onclick=()=>howto(0);}
+app.innerHTML=`<div class='menu'><div class='gridf'></div>${fl}<div class='mc'><h1 class='gl' data-t='ROBOT'>ROBOT</h1><h1 class='gl gl2' data-t='ASSEMBLY LAB'>ASSEMBLY LAB</h1><div class='arenam'><div class='mr mL'>${mascot(COL[0],MA)}</div><div class='vsx'>VS</div><div class='mr mR'>${mascot(COL[1],MB)}</div></div><div class='steps'><span>🔧 BUILD</span><b>➜</b><span>❓ ANSWER</span><b>➜</b><span>💥 BATTLE</span></div><button class='go' id='go'>▶ START</button></div></div>`;
+$('go').onclick=()=>howto(0,HWB,startGame,setup);}
 function robot(t,r,ev){const c=COL[t],R=G[t][r];let h=`<svg viewBox="0 0 200 270" data-t="${t}" data-r="${r}"><ellipse cx="100" cy="262" rx="70" ry="7" fill="${c}" opacity=".2"/>`;
 ['legL','legR','body','armL','armR','head'].forEach(s=>{const v=R[s],e=ev&&ev.t===t&&ev.r===r&&ev.s===s,[x,y,w,hh]=BB[s],act=t===cur&&!busy;
 let inner='';
@@ -342,12 +348,12 @@ o.querySelector('#rs').innerHTML=ok?`<div class="res" style="color:var(--ok)">�
 setTimeout(()=>{o.remove();G[t][r][s]={v,ok};snd(ok);board({t,r,s});const nx=(mode==='seq'&&Object.keys(G[t][0]).length<6)?t:1-t;setTimeout(()=>{if(SL.length*2===G.flat().reduce((a,R)=>a+Object.keys(R).length,0))return;cur=nx;busy=false;board();},ok?1800:2400);
 if(SL.length*2===G.flat().reduce((a,R)=>a+Object.keys(R).length,0))setTimeout(end,2600);},1500);}}
 function end(){bgmOff();const a=sc(0),b=sc(1),w=a===b?'It’s a tie!':`🏆 ${names[a>b?0:1]} wins!`;
-modal(`<div class="center"><h1>BUILD COMPLETE</h1><div class="res">Time to fight! ⚔️</div><p class="mut">Each cardboard part = −8 starting HP</p><p>${names[0]}: <b style="color:${COL[0]}">${a}</b> /6 &nbsp;·&nbsp; ${names[1]}: <b style="color:${COL[1]}">${b}</b> /6</p><button class="btn" id="again">⚔️ START BATTLE</button></div>`).querySelector('#again').onclick=lobby;}
-const AC5={p:['👊','Punch'],k:['🦶','Kick'],g:['🛡️','High Guard'],j:['🦘','Jump'],s:['⚡','Special']};
-const DS={p:'12 dmg · High Guard blocks it',k:'18 dmg · Jump dodges it · every 2 turns',g:'Blocks Punch · every 2 turns',j:'Dodges Kick + counter 15',s:'35 dmg · quiz! · recharge 3 turns'};
+modal(`<div class="center"><h1>BUILD COMPLETE</h1><div class="res">Time to fight! ⚔️</div><p class="mut">Each cardboard part = −8 starting HP</p><p>${names[0]}: <b style="color:${COL[0]}">${a}</b> /6 &nbsp;·&nbsp; ${names[1]}: <b style="color:${COL[1]}">${b}</b> /6</p><button class="btn" id="again">⚔️ START BATTLE</button></div>`).querySelector('#again').onclick=()=>{bgmOn(2);howto(0,HWF,lobby,null);};}
+const AC5={p:['👊','Punch'],g:['🛡️','Guard'],s:['⚡','Special']};
+const DS={p:'15 dmg · Guard blocks it',g:'Blocks Punch · rest 1 turn after use',s:'35 dmg · quiz! · rest 3 turns after use'};
 const PT=[[-80,-60],[80,-60],[-90,10],[90,10],[-35,-95],[35,-95],[0,-105]].map(([x,y])=>`<i class='pt' style='--x:${x}px;--y:${y}px'>✦</i>`).join('');
 let B;
-function battle(){bgmOn(1);document.querySelectorAll('.ov').forEach(e=>e.remove());busy=true;B={hp:[100-8*(6-sc(0)),100-8*(6-sc(1))],cd:[{g:0,k:0,s:0},{g:0,k:0,s:0}],rd:1,pk:[null,null],ch:0,an:['',''],dm:[0,0],em:['',''],msg:'',lock:false,ph:!HOT,ent:true,prev:null};bs();sendPicks();splash('ROUND 1','#ffe14d');setTimeout(()=>splash('FIGHT!','#ff4d6d'),1100);}
+function battle(){bgmOn(1);bgmOff(2);document.querySelectorAll('.ov').forEach(e=>e.remove());busy=true;B={hp:[100-8*(6-sc(0)),100-8*(6-sc(1))],cd:[{g:0,s:0},{g:0,s:0}],rd:1,pk:[null,null],ch:0,an:['',''],dm:[0,0],em:['',''],msg:'',lock:false,ph:!HOT,ent:true,prev:null};bs();sendPicks();splash('ROUND 1','#ffe14d');setTimeout(()=>splash('FIGHT!','#ff4d6d'),1100);}
 function bs(){const t=B.ch,L=B.lock,ent=B.ent;B.ent=false;
 const col=h=>h>50?'#3dff9a':h>25?'#ffe14d':'#ff4d6d';
 const hp=i=>{const a=B.prev?B.prev[i]:B.hp[i],b=B.hp[i];return `<div class='plate' style='--c:${COL[i]}'><div class='pn'>${names[i]}</div><div class='hpb' style='--a:${a}%;--b:${b}%'><u></u><i style='background:${col(b)}'></i><span>${b} / 100</span></div></div>`;};
@@ -355,7 +361,7 @@ const fig=i=>`<div class='fig f${i} ${B.an[i]} ${ent?'ent':''}'>${B.dm[i]?`<b cl
 const st=i=>B.pk[i]?'✅ locked in':'🤔 thinking…';
 const panel=B.ph&&!L?`<div class='center res'>📱 ${names[0]}: ${st(0)}<br>📱 ${names[1]}: ${st(1)}</div>`:L?`<div class='center res'>${B.msg}</div>`:`<p class='center'><b style='color:${COL[t]}'>${names[t]}</b> — pick an action<br><span class='mut'>${t?'✅ '+names[0]+' locked in':'(other team: look away 👀)'}</span></p><div class='acts'>${Object.keys(AC5).map(a=>{const c=B.cd[t][a]||0;return `<button class='act' data-a='${a}' ${c?'disabled':''}><span>${AC5[a][0]}</span><b>${AC5[a][1]}</b><small>${c?'🔒 '+c+' turn'+(c>1?'s':''):DS[a]}</small></button>`}).join('')}</div>`;
 const crowd=Array.from({length:18},(_,i)=>`<i style='animation-delay:${((i*.17)%1.2).toFixed(2)}s'>${['🤖','👾','🛸','🦾','👽','🧑‍🚀'][i%6]}</i>`).join('');
-app.innerHTML=`<div class='bt' style='--t:${B.imp||0}s'><div class='hud'>${hp(0)}<div class='rdb'>ROUND<b>${B.rd}</b><small>/15</small></div>${hp(1)}</div><div class='arena ${B.big?'big':''} ${B.spl?'spl':''}'><div class='bk'><div class='beam b1'></div><div class='beam b2'></div><div class='cr'>${crowd}</div></div><div class='flr'></div>${fig(0)}<div class='vs'>VS</div>${fig(1)}</div>${panel}</div>`;
+app.innerHTML=`<div class='bt' style='--t:${B.imp||0}s'><div class='hud'>${hp(0)}<div class='rdb'>ROUND<b>${B.rd}</b><small>/12</small></div>${hp(1)}</div><div class='arena ${B.big?'big':''} ${B.spl?'spl':''}'><div class='bk'><div class='beam b1'></div><div class='beam b2'></div><div class='cr'>${crowd}</div></div><div class='flr'></div>${fig(0)}<div class='vs'>VS</div>${fig(1)}</div>${panel}</div>`;
 app.querySelectorAll('.act').forEach(b=>b.onclick=()=>bpick(b.dataset.a));}
 function splash(txt,c){const d=document.createElement('div');d.className='splash';d.style.setProperty('--c',c||'#fff');d.textContent=txt;document.body.appendChild(d);setTimeout(()=>d.remove(),1000);}
 function bpick(a){B.pk[B.ch]=a;if(B.ch===0){B.ch=1;bs();}else{B.lock=true;B.msg='⏳ …';bs();bres();}}
@@ -370,19 +376,17 @@ QZ={t,go};if(B.ph){tx(t,{k:'quiz',q:q[0],opts:op.map(p=>p.x),sec:15});tx(1-t,{k:
 function bres(){const sp=[0,0],go=t=>{if(t>1)return fin();if(B.pk[t]==='s')quizq(t,ok=>{sp[t]=ok;go(t+1)});else go(t+1)};
 const fin=()=>{const[x,y]=B.pk,d=[0,0],ev=[],an=['',''],fx=[null,null];
 [0,1].forEach(i=>{const a=B.pk[i],o=B.pk[1-i],n=names[i],m=names[1-i];
-if(a==='p'){an[i]='atk pn';if(o==='g'){ev.push(`🛡️ ${m} blocked the punch!`);fx[1-i]=['CLANG!','#5cf']}else{d[1-i]+=12;fx[1-i]=['POW!','#ffe14d']}}
-else if(a==='k'){an[i]='atk kk';if(o==='j'){ev.push(`🦘 ${m} dodged the kick!`);fx[1-i]=['DODGE!','#3dff9a']}else{d[1-i]+=18;fx[1-i]=['WHAM!','#ff8a3d']}}
+if(a==='p'){an[i]='atk pn';if(o==='g'){ev.push(`🛡️ ${m} blocked the punch!`);fx[1-i]=['CLANG!','#5cf']}else{d[1-i]+=15;fx[1-i]=['POW!','#ffe14d']}}
 else if(a==='g')an[i]='gd';
-else if(a==='j'){an[i]='jmp';if(o==='k'){d[1-i]+=15;fx[1-i]=['BOING!','#ff6fb5'];ev.push(`🦘 ${n} counter-attacks!`)}}
 else if(a==='s'){if(sp[i]){an[i]='atk sp';d[1-i]+=35;fx[1-i]=['KABOOM!','#ff4d6d'];ev.push(`⚡ ${n}’s SPECIAL lands!`)}else{an[i]='fail';fx[i]=['FIZZLE…','#8aa0c8'];ev.push(`💨 ${n}’s special FAILED!`)}}});
-d.forEach((v,i)=>{if(v)ev.push(`💥 ${names[i]} −${v}`)});B.prev=B.hp.slice();B.hp=B.hp.map((h,i)=>Math.max(0,h-d[i]));B.dm=d;d.forEach((v,i)=>{if(v)an[i]+=' hurt';if(B.hp[i]<=0)an[i]+=' ko'});B.an=an;B.fx=fx;B.big=d.some(v=>v>=15);B.spl=!!(sp[0]||sp[1]);B.imp=.9+(B.spl?1.56:B.pk.includes('k')?1.0:.8);
+d.forEach((v,i)=>{if(v)ev.push(`💥 ${names[i]} −${v}`)});B.prev=B.hp.slice();B.hp=B.hp.map((h,i)=>Math.max(0,h-d[i]));B.dm=d;d.forEach((v,i)=>{if(v)an[i]+=' hurt';if(B.hp[i]<=0)an[i]+=' ko'});B.an=an;B.fx=fx;B.big=d.some(v=>v>=15);B.spl=!!(sp[0]||sp[1]);B.imp=.9+(B.spl?1.56:.8);
 B.em=B.pk.map((a,i)=>a==='s'&&!sp[i]?'💨':AC5[a][0]);
 B.msg=`<div style='font-size:clamp(22px,3.2vw,40px)'>${names[0]} ${AC5[x][0]} <span class='mut'>vs</span> ${AC5[y][0]} ${names[1]}</div><div>${ev.join(' · ')||'Nothing happens…'}</div>`;
-['g','k','s'].forEach(k=>[0,1].forEach(i=>{if(B.cd[i][k]>0)B.cd[i][k]--}));
-[0,1].forEach(i=>{const a=B.pk[i];if(a==='g'||a==='k')B.cd[i][a]=1;if(a==='s')B.cd[i].s=3});
+['g','s'].forEach(k=>[0,1].forEach(i=>{if(B.cd[i][k]>0)B.cd[i][k]--}));
+[0,1].forEach(i=>{const a=B.pk[i];if(a==='g')B.cd[i].g=1;if(a==='s')B.cd[i].s=3});
 if(B.ph)tx('all',{k:'msg',text:AC5[x][0]+' vs '+AC5[y][0]+' — '+(ev.join(' · ')||'Nothing happens…'),hp:B.hp});
 bs();
-setTimeout(()=>{if(B.hp[0]<=0||B.hp[1]<=0||B.rd>=15)return bend();B.rd++;B.pk=[null,null];B.ch=0;B.an=['',''];B.dm=[0,0];B.em=['',''];B.fx=null;B.big=0;B.spl=0;B.imp=0;B.prev=B.hp.slice();B.lock=false;B.msg='';bs();sendPicks();splash('ROUND '+B.rd,'#ffe14d');},(B.imp+2.6)*1000);};
+setTimeout(()=>{if(B.hp[0]<=0||B.hp[1]<=0||B.rd>=12)return bend();B.rd++;B.pk=[null,null];B.ch=0;B.an=['',''];B.dm=[0,0];B.em=['',''];B.fx=null;B.big=0;B.spl=0;B.imp=0;B.prev=B.hp.slice();B.lock=false;B.msg='';bs();sendPicks();splash('ROUND '+B.rd,'#ffe14d');},(B.imp+2.6)*1000);};
 go(0);}
 function fanfare(){try{AC=AC||new AudioContext();const t=AC.currentTime;[523,659,784,1047,784,1047,1319].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.type='square';o.frequency.value=f;g.gain.setValueAtTime(.12,t+i*.18);g.gain.exponentialRampToValueAtTime(.001,t+i*.18+.3);o.connect(g);g.connect(AC.destination);o.start(t+i*.18);o.stop(t+i*.18+.32);});}catch(e){}}
 function bend(){const[a,b]=B.hp,dr=a===b,w=a>b?0:1;
@@ -412,6 +416,6 @@ ws.onclose=()=>{PL=[0,0];setTimeout(conn,1500);};
 ws.onmessage=e=>{const m=JSON.parse(e.data);
 if(m.type==='players'){PL=m.on;if(lob)lobby();if(!B)hello();}
 else if(m.type==='c'&&B){if(m.msg.k==='act')phAct(m.team,m.msg.a);if(m.msg.k==='ans'&&QZ&&QZ.t===m.team)QZ.go(m.msg.i);}};}
-conn();
+try{conn();}catch(e){}
 setup();
 </script></body></html>
