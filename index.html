@@ -179,6 +179,22 @@ body{padding-bottom:44px}.np{position:fixed;left:8px;right:8px;bottom:calc(6px +
 .panel,.q,.opt,.how p,.how .card,.how .ac div,.how .out{font-family:Lexend,system-ui,sans-serif}
 .panel h1,.panel .btn,.panel .pk,.panel #tm{font-family:Orbitron,system-ui,sans-serif}
 .q,.opt{font-weight:500;letter-spacing:.2px}.q{line-height:1.4}
+/* ===== GUIDE: big for projector ===== */
+.wrap:has(.how){max-width:1500px}.how{max-width:1400px}
+.how h1{font-size:clamp(28px,5vw,64px);margin:4px 0 10px}
+.gc{min-height:clamp(340px,58vh,700px);display:flex;flex-direction:column;justify-content:center;padding:clamp(16px,2.4vw,40px)}
+.how .card{font-size:clamp(18px,2.4vw,32px)}
+.how p{font-size:clamp(20px,3vw,40px)}.how .card small{font-size:clamp(14px,2vw,26px)}
+.how .steps span{font-size:clamp(18px,2.8vw,34px);padding:8px 20px}.how .steps b{font-size:clamp(20px,3vw,40px)}
+.how .th{width:clamp(90px,11vw,170px);height:clamp(104px,13vw,200px)}.how .arr{font-size:clamp(32px,4vw,60px)}
+.how .bc span{font-size:clamp(56px,8vw,110px)}.how .bc b{font-size:clamp(18px,2.4vw,32px)}.how .bc small{font-size:clamp(14px,1.8vw,24px);min-height:0}.how .bc em{font-size:clamp(14px,1.6vw,22px)}
+.how .mg{grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:14px}
+.how .mb{width:clamp(80px,9vw,140px)}.how .mb .bub{font-size:clamp(36px,4vw,60px);top:-24px}.how .mu{padding:clamp(18px,2.4vw,34px) 10px 10px;gap:clamp(8px,1.4vw,20px)}.how .mu .x{font-size:clamp(14px,1.8vw,24px)}
+.how .out{font-size:clamp(16px,2vw,28px);min-width:150px}
+.how .phone{width:min(420px,42vw);padding:clamp(14px,2vw,26px)}.how .pb{font-size:clamp(16px,2vw,26px)}.how .pb span{font-size:clamp(40px,5vw,70px)}
+.how .btn{font-size:clamp(18px,2.4vw,30px);padding:clamp(10px,1.4vw,18px) clamp(24px,3vw,48px)}
+.how .pk{font-size:clamp(16px,2vw,26px)!important;padding:12px 26px!important}
+.how .hw>.mut{font-size:clamp(18px,2.4vw,32px);letter-spacing:4px}
 .wrap:has(.qrow){max-width:1500px}
 .qrow{display:flex;justify-content:space-between;align-items:center;gap:3vw;margin:10px auto}
 .qb{flex:1;text-align:center;border:4px solid var(--c);border-radius:20px;padding:clamp(10px,2vw,24px);box-shadow:0 0 30px var(--c);background:#0a1226}
@@ -290,14 +306,14 @@ const bxs=s=>{const[x,y,w,h]=BB[s],p=6;return `<svg class='th' viewBox='${x-p} $
 const bigb=`style='display:flex;align-items:center;justify-content:center;font-size:32px'`;
 const mbx=(c,v,a)=>`<div class='mb'><span class='bub'>${a}</span>${mascot(c,v)}</div>`,rwx=(a,b,cl,tx)=>`<div class='mu'>${mbx(COL[0],MA,a)}<b class='x'>VS</b>${mbx(COL[1],MB,b)}<div class='out ${cl}'>${tx}</div></div>`;
 const HWB=[
-['1 · YOUR MISSION',()=>`<div class='hw'><div style='width:150px'>${mascot(COL[0],MA)}</div><div style='font-size:44px'>⚔️</div><div style='width:150px'>${mascot(COL[1],MB)}</div></div><div class='steps'><span>🔧 BUILD a robot</span><b>➜</b><span>⚔️ FIGHT the other team</span><b>➜</b><span>🏆 WIN!</span></div><p>Answer questions to build a strong robot!</p>`],
-['2 · BUILD YOUR ROBOT',()=>`<div class='hw'><div class='card'><span style='font-size:36px'>🤔</span><br><b>Choose a part</b><br><small class='mut'>head · body · arms · legs</small></div><span class='arr'>➜</span><div class='card'><span style='font-size:36px'>❓</span><br><b>Answer the question</b><br><small class='mut'>You have 15 seconds</small></div></div><div class='hw'><div class='card' style='border-color:var(--ok)'>${mini('head',2,COL[0])}<br>✅ <b>Correct!</b><br><small class='mut'>You get the part</small></div><div class='card' style='border-color:var(--bad)'><span style='font-size:30px'>💥 ➜</span>${bxs('head')}<br>❌ <b>Wrong!</b><br><small class='mut'>Boom! A cardboard part</small></div></div><p class='mut'>Cardboard parts = less ❤️ in the battle</p>`]];
+['1 · YOUR MISSION',()=>`<div class='hw'><div style='width:clamp(150px,18vw,260px)'>${mascot(COL[0],MA)}</div><div style='font-size:44px'>⚔️</div><div style='width:clamp(150px,18vw,260px)'>${mascot(COL[1],MB)}</div></div><div class='steps'><span>🔧 BUILD a robot</span><b>➜</b><span>⚔️ FIGHT the other team</span><b>➜</b><span>🏆 WIN!</span></div><p>Answer questions to build a strong robot!</p>`],
+['2 · BUILD YOUR ROBOT',()=>`<div class='hw'><div class='card'><span style='font-size:clamp(44px,5vw,80px)'>🤔</span><br><b>Choose a part</b><br><small class='mut'>head · body · arms · legs</small></div><span class='arr'>➜</span><div class='card'><span style='font-size:clamp(44px,5vw,80px)'>❓</span><br><b>Answer the question</b><br><small class='mut'>You have 15 seconds</small></div></div><div class='hw'><div class='card' style='border-color:var(--ok)'>${mini('head',2,COL[0])}<br>✅ <b>Correct!</b><br><small class='mut'>You get the part</small></div><div class='card' style='border-color:var(--bad)'><span style='font-size:clamp(36px,4vw,64px)'>💥 ➜</span>${bxs('head')}<br>❌ <b>Wrong!</b><br><small class='mut'>Boom! A cardboard part</small></div></div><p class='mut'>Cardboard parts = less ❤️ in the battle</p>`]];
 HWB.cta='START BUILDING ▶';
 const HWF=[
-['1 · BATTLE: USE YOUR PHONE',()=>`<div class='hw' style='gap:24px'><div class='phone'><div class='pb'><span>👊</span>Punch</div><div class='pb'><span>🛡️</span>Guard</div><div class='pb s'><span>⚡</span>Special</div></div><div style='text-align:left;font-size:clamp(16px,2.4vw,22px);line-height:2'>1️⃣ Scan your team’s QR code 📱<br>2️⃣ Pick a move <b>in secret</b> 🤫<br>3️⃣ Both moves show at the <b>same time</b>! 💥</div></div><p class='mut'>❤️ Start with 100 HP, minus 8 for every cardboard part</p>`],
+['1 · BATTLE: USE YOUR PHONE',()=>`<div class='hw' style='gap:24px'><div class='phone'><div class='pb'><span>👊</span>Punch</div><div class='pb'><span>🛡️</span>Guard</div><div class='pb s'><span>⚡</span>Special</div></div><div style='text-align:left;font-size:clamp(20px,3vw,40px);line-height:2'>1️⃣ Scan your team’s QR code 📱<br>2️⃣ Pick a move <b>in secret</b> 🤫<br>3️⃣ Both moves show at the <b>same time</b>! 💥</div></div><p class='mut'>❤️ Start with 100 HP, minus 8 for every cardboard part</p>`],
 ['2 · THE 3 MOVES',()=>`<div class='bg5' style='grid-template-columns:repeat(3,1fr)'><div class='bc'><span>👊</span><b>PUNCH</b><small>Hit the enemy</small><em>−15 HP</em></div><div class='bc'><span>🛡️</span><b>GUARD</b><small>Blocks a Punch</small><em class='n'>rest 1 turn 🔒</em></div><div class='bc'><span>⚡</span><b>SPECIAL</b><small>Huge hit! Answer a quiz first</small><em class='y'>−35 HP · rest 3 turns 🔒</em></div></div><p class='mut' style='margin-top:14px'>You can’t use Guard or Special again right away!</p>`],
 ['3 · WHO BEATS WHO?',()=>`<div class='mg'>${rwx('👊','🛡️','b','🛡️ <b>BLOCKED!</b><br>Punch does nothing.')}${rwx('👊','👊','r','<b>Both get hit!</b><br>−15 each')}${rwx('⚡','🛡️','y','⚡ <b>Special can’t be stopped!</b><br>Answer the quiz correctly.')}${rwx('⚡','👊','y','⚡ <b>Special hits hard!</b><br>Wrong answer = it fails 💨')}</div>`],
-['4 · HOW TO WIN',()=>`<div class='win' style='width:190px;margin:22px auto 6px'><div class='crown'>👑</div>${mascot(COL[0],MA)}</div><p>Bring the other robot’s ❤️ down to <b>0</b> = <b>K.O.!</b><br>After 12 rounds, the robot with more ❤️ wins! 🏆</p>`]];
+['4 · HOW TO WIN',()=>`<div class='win' style='width:clamp(190px,22vw,340px);margin:22px auto 6px'><div class='crown'>👑</div>${mascot(COL[0],MA)}</div><p>Bring the other robot’s ❤️ down to <b>0</b> = <b>K.O.!</b><br>After 12 rounds, the robot with more ❤️ wins! 🏆</p>`]];
 HWF.cta='CONNECT PHONES ▶';
 const BG=[document.getElementById('bgm'),document.getElementById('bgm2'),document.getElementById('bgm3'),document.getElementById('bgm4')],VOL=[.35,.4,.35,.4],fadeIv=[0,0,0,0];let muted=false,want=-1;
 function bgmOn(i=0){want=i;clearInterval(fadeIv[i]);BG[i].volume=VOL[i];if(!muted)BG[i].play().catch(()=>{});}
@@ -308,7 +324,7 @@ function startGame(){window.onkeydown=null;bgmOn();bgmOff(2);names=['Team Cyan',
 function howto(n,L,done,back){document.querySelectorAll('.ov').forEach(e=>e.remove());
 window.onkeydown=e=>{if(e.key==='ArrowRight'&&n<L.length-1)howto(n+1,L,done,back);else if(e.key==='ArrowLeft'&&n>0)howto(n-1,L,done,back)};
 const[tt,fn]=L[n],last=n===L.length-1;
-app.innerHTML=`<div class='how'><h1 class='center'>${tt}</h1><div class='card center' style='min-height:340px'>${fn()}</div><div class='hw' style='margin-top:12px'>${n?`<button class='pk' id='hp' style='padding:10px 18px'>◀ Back</button>`:back?`<button class='pk' id='hm' style='padding:10px 18px'>☰ Menu</button>`:`<span style='width:90px'></span>`}<span class='mut'>${L.map((_,i)=>i===n?'●':'○').join(' ')}</span>${last?`<button class='btn' id='hs'>${L.cta}</button>`:`<button class='btn' id='hn'>Next ▶</button>`}</div></div>`;
+app.innerHTML=`<div class='how'><h1 class='center'>${tt}</h1><div class='card center gc'>${fn()}</div><div class='hw' style='margin-top:12px'>${n?`<button class='pk' id='hp' style='padding:10px 18px'>◀ Back</button>`:back?`<button class='pk' id='hm' style='padding:10px 18px'>☰ Menu</button>`:`<span style='width:90px'></span>`}<span class='mut'>${L.map((_,i)=>i===n?'●':'○').join(' ')}</span>${last?`<button class='btn' id='hs'>${L.cta}</button>`:`<button class='btn' id='hn'>Next ▶</button>`}</div></div>`;
 const g=id=>document.getElementById(id);
 if(g('hp'))g('hp').onclick=()=>howto(n-1,L,done,back);if(g('hm'))g('hm').onclick=back;if(g('hn'))g('hn').onclick=()=>howto(n+1,L,done,back);if(g('hs'))g('hs').onclick=()=>{window.onkeydown=null;done();};}
 function setup(){window.onkeydown=null;bgmOn(2);
